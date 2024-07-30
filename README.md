@@ -1,57 +1,21 @@
-# Project Name
+# Linux and Postgres Migration Learning Path 
 
-(short, 1-3 sentenced, description of the project)
+## Introduction 
 
-## Features
+In this Learning Path, you'll be guided through a series of modules that enable you to migrate an existing workload from an on-premises or cloud environment to Azure. It covers the migration of the compute to an Azure Virtual Machine and the data to Azure Database for PostgreSQL. The application is a cloud-agnostic sample application that is a stand-in for any real-world application prepared for migration to the cloud. You explore the value of shifting from a self-hosted environment, such as from a self-managed database to a fully managed database offering and from bare-metal compute to cloud-hosted virtual machines with the benefit of a full suite of security and identity controls provided by Azure, such as Microsoft Entra ID. You'll also explore the benefits of managing resources in the cloud from a cost and performance perspective. You'll learn how to precisely calculate and manage costs before and after deployment, as well as how to optimize performance from both a compute and a data perspective.
 
-This project framework provides the following features:
+[Browse Modules](./modules/README.md)
 
-* Feature 1
-* Feature 2
-* ...
+## Infrastructure (Bicep)
 
-## Getting Started
+The [deploy/](./deploy) folder in this repo contains the infrastructure code for our deployment. In this folder you will see [vm-postgres.bicep](./deploy/vm-postgres.bicep) which is the Bicep template that deploys a Virtual Machine and a PostgreSQL database, and [empty.bicep](./deploy/empty.bicep) which is an empty Bicep template that can be used to delete the resources created by the [vm-postgres.bicep](./deploy/vm-postgres.bicep) file.
 
-### Prerequisites
+These Bicep templates use [Azure Verified Modules (AVM)](https://azure.github.io/Azure-Verified-Modules/).
 
-(ideally very short, if any)
+## Data
 
-- OS
-- Library version
-- ...
+The [app/data/](./app/data) folder in this repo contains data for our application workload. In this folder you will see [app/postgres/tailwind.sql](./app/data/postgres/tailwind.sql) which is the SQL file that will be imported into the PostgreSQL database. [app/data/images/](./app/data/images) contains images that will be uploaded to Azure Blob Storage.
 
-### Installation
+## Application Code
 
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+Our application workload is Tailwind Traders (Go) which is available at: https://github.com/Azure-Samples/tailwind-traders-go
