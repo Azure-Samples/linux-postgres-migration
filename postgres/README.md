@@ -1,10 +1,12 @@
 # POSTGRES
 
+## create a resource group for our azure resources
 ```bash
-# create a resource group for our azure resources
 az group create --location eastus --name 240800-linux-postgres
+```
 
-# deploy the postgres.bicep using az cli
+## deploy the postgres.bicep using az cli
+```bash
 az deployment group create \
     --resource-group 240800-linux-postgres \
     --template-file postgres/postgres.bicep
@@ -15,5 +17,5 @@ az deployment group create \
 az deployment group create \
     --resource-group 240800-linux-postgres \
     --mode complete \
-    --template-file linux/empty.bicep
+    --template-file postgres/empty.bicep
 ```
