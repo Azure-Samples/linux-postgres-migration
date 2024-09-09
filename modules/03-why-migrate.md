@@ -1,4 +1,6 @@
-# What is the value of migrating this workload? 
+# Why Migrate?
+
+## What is the value of migrating this workload? 
 
 As we consider this migration effort, you may wonder about the benefits of migrating this workload to the cloud. There are many, but some of the value propositions include 
 
