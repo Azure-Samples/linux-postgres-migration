@@ -1,8 +1,8 @@
 ### YamlMime:ModuleUnit
 uid: learn.linux-postgres-migration.{{unitName}}
-title: Enter learning content title
+title: Configure a Linux application workload​
 metadata:
-  title: learning-content
+  title: Configure a Linux application workload​
   description: "TODO this field is for search engine optimization and is not user-visible; use 2-3 complete, grammatically correct sentences to describe the unit; include relevant search keywords."
   ms.date: 9/16/2024
   author: {{githubUsername}}
@@ -23,4 +23,4 @@ metadata:
   ms.service: TODO
 durationInMinutes: 1
 content: |
-  [!include[](includes/4-learning-content.md)]
+  [!include[](includes/3-configure-linux-application-workload.md)]

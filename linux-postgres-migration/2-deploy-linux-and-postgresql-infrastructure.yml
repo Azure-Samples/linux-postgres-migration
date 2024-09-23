@@ -1,8 +1,8 @@
 ### YamlMime:ModuleUnit
 uid: learn.linux-postgres-migration.{{unitName}}
-title: Enter learning content title
+title: Deploy Linux and PostgreSQL infrastructure​
 metadata:
-  title: learning-content
+  title: Deploy Linux and PostgreSQL infrastructure​
   description: "TODO this field is for search engine optimization and is not user-visible; use 2-3 complete, grammatically correct sentences to describe the unit; include relevant search keywords."
   ms.date: 9/16/2024
   author: {{githubUsername}}
@@ -23,4 +23,4 @@ metadata:
   ms.service: TODO
 durationInMinutes: 1
 content: |
-  [!include[](includes/2-learning-content.md)]
+  [!include[](includes/2-deploy-linux-and-postgresql-infrastructure.md)]
