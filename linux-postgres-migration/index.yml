@@ -40,12 +40,10 @@ products: # see product taxonomy https://review.docs.microsoft.com/help/contribu
 subjects: # see subject taxonomy https://review.docs.microsoft.com/help/contribute/metadata-taxonomies?branch=main#subject
   - TODO
 units:
-- learn.linux-postgres-migratio.introduction
-- learn.linux-postgres-migratio.learning-content
-- learn.linux-postgres-migratio.exercise
-- learn.linux-postgres-migratio.learning-content
-- learn.linux-postgres-migratio.exercise
-- learn.linux-postgres-migratio.knowledge-check
-- learn.linux-postgres-migratio.summary
+- learn.linux-postgres-migration.migrate-linux-and-postgresql-workloads
+- learn.linux-postgres-migration.deploy-linux-and-postgresql-infrastructure
+- learn.linux-postgres-migration.configure-linux-application-workload
+- learn.linux-postgres-migration.explore-and-run-linux-and-postgresql-workloads
+- learn.linux-postgres-migration.summary
 badge:
   uid: learn.linux-postgres-migration.badge
