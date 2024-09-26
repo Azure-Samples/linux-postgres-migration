@@ -1,4 +1,4 @@
-# POSTGRES NOTES
+# DEPLOY
 
 ## deploy using avm via:
 
