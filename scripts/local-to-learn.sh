@@ -1,0 +1,1 @@
+rsync -av --progress migrate-linux-postgres/ learn-pr/learn-pr/azure/migrate-linux-postgres/
