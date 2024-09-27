@@ -7,12 +7,6 @@ az group create \
     --location westus2
 ```
 
-## delete a resource group
-```bash
-az group delete \
-    --name 240900-linux-postgres
-```
-
 ## vm & postgres
 ```bash
 az deployment group create \
@@ -42,4 +36,10 @@ az deployment group create \
     --resource-group 240900-linux-postgres \
     --template-file deploy/empty.bicep \
     --mode complete
+```
+
+## delete a resource group
+```bash
+az group delete \
+    --name 240900-linux-postgres
 ```

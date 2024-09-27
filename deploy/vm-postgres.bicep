@@ -7,17 +7,33 @@ var keyData = sshKey != ''
   ? sshKey
   : 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3gkRpKwprN00sT7yekr0xO0F+uTllDua02puhu1v0zGu3aENvUsygBHJiTy+flgrO2q3mY9F5/D67+WHDeSpr5s71UtnbzMxTams89qmo+raTm+IqjzdNujaWf0/pbT6JUkQq0fR0BfIvg3/7NTXhlzjmCOP2EpD91LzN6b5jAm/5hXr0V5mcpERo8kk2GWxjKmwmDOV+huH1DIFDpMxT3WzR2qvZp1DZbNSYmKkrite3FHlPGLXA1I3bRQT+iTj8vRGpxOPSiMdPK4RNMEZVXSGQ3OZbSl2FBCbd/tdJ1idKo8/ZCkHxdh9/em28/yfPUK0D164shgiEdIkdOQJv'
 
+var customData = '''
+#cloud-config
+runcmd:
+  - rm /home/azureuser/.ssh/authorized_keys
+'''
+
 var rand = substring(uniqueString(resourceGroup().id), 0, 6)
 var virtualNetworkName = '${resourceGroup().name}-vnet'
 var managedIdentityName = '${resourceGroup().name}-identity'
 var nsgName = '${resourceGroup().name}-nsg'
-var vmName = 'vm${rand}'
+var vmName = 'vm-1'
 var postgresName = 'postgres-${rand}'
 var addressPrefix = '10.0.0.0/16'
 
 resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
   name: managedIdentityName
   location: location
+}
+
+resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = {
+  name: guid(subscription().id, managedIdentity.id, 'Reader')
+  properties: {
+    // Reader role definition ID
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'acdd72a7-3385-48ef-bd42-f606fba81ae7')
+    principalId: virtualMachine.outputs.systemAssignedMIPrincipalId
+    principalType: 'ServicePrincipal'
+  }
 }
 
 module virtualNetwork 'br/public:avm/res/network/virtual-network:0.4.0' = if (deployVm) {
@@ -60,6 +76,7 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.6.0' = if (de
       version: 'latest'
     }
     name: vmName
+    customData: customData
     encryptionAtHost: false
     nicConfigurations: [
       {

@@ -15,6 +15,30 @@ az account set --subscription 5428a634-bd96-4430-8ce2-058009e31188
 ## check subscription
 az account show
 
+## fix git error
+
+```
+$  git push --set-upstream origin app-1
+Enumerating objects: 121, done.
+Counting objects: 100% (121/121), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (114/114), done.
+error: RPC failed; HTTP 400 curl 22 The requested URL returned error: 400
+send-pack: unexpected disconnect while reading sideband packet
+Writing objects: 100% (119/119), 9.38 MiB | 17.27 MiB/s, done.
+Total 119 (delta 8), reused 0 (delta 0), pack-reused 0
+fatal: the remote end hung up unexpectedly
+Everything up-to-date
+```
+
+### solution
+
+```
+git config http.postBuffer 157286400
+git config http.maxRequestBuffer 100M
+```
+
+
 ## aad extension
 
 ```json

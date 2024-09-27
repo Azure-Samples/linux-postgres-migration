@@ -1,8 +1,4 @@
-# Module 3: Configure a Linux application workload​
-
-## Introduction
-
-In this module you will configure a Linux application workload to connect to an Azure Database for PostgreSQL using a system-assigned managed identity. You will connect to the Azure Virtual Machine using the Azure CLI, install the necessary tools, and connect to the PostgreSQL server using psql. You will then clone the repository containing the sample application, run the application, and confirm it can connect to the PostgreSQL server using the managed identity.
+# LINUX POSTGRES
 
 ## Get the currently logged-in user and the VM ID
 
