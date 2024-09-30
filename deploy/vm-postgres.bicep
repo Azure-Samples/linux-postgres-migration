@@ -4,15 +4,25 @@ param deployVm bool = true
 param deployStorage bool = false
 param sshKey string = ''
 
+// The below is a sample ssh key we use if no sshKey is provided
+// so that we can deploy easily without needing to provide it as
+// a mandatory option. Because it is only to enable us to deploy
+// we delete it immediately after deployment using cloud-init and
+// customDataNoKey.
+
 var keyData = sshKey != ''
   ? sshKey
   : 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3gkRpKwprN00sT7yekr0xO0F+uTllDua02puhu1v0zGu3aENvUsygBHJiTy+flgrO2q3mY9F5/D67+WHDeSpr5s71UtnbzMxTams89qmo+raTm+IqjzdNujaWf0/pbT6JUkQq0fR0BfIvg3/7NTXhlzjmCOP2EpD91LzN6b5jAm/5hXr0V5mcpERo8kk2GWxjKmwmDOV+huH1DIFDpMxT3WzR2qvZp1DZbNSYmKkrite3FHlPGLXA1I3bRQT+iTj8vRGpxOPSiMdPK4RNMEZVXSGQ3OZbSl2FBCbd/tdJ1idKo8/ZCkHxdh9/em28/yfPUK0D164shgiEdIkdOQJv'
 
-var customData = '''
+var customDataNoKey = '''
 #cloud-config
 runcmd:
   - rm /home/azureuser/.ssh/authorized_keys
 '''
+
+var customData = sshKey != ''
+  ? ''
+  : customDataNoKey
 
 var rand = substring(uniqueString(resourceGroup().id), 0, 6)
 var virtualNetworkName = '${resourceGroup().name}-vnet'
