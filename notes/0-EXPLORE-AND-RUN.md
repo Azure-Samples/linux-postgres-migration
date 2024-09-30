@@ -1,19 +1,6 @@
-# Module 4: Explore and run Linux and PostgreSQL workloads​
+# EXPLORE AND RUN
 
-## Introduction
-
-In this module, you will:
-
-- Deploy an Azure Blob Storage account using a Bicep template.
-- Create a Blob Storage container and upload a file.
-- Connect to the Azure Virtual Machine using the Azure CLI.
-- Download the file from the storage account.
-- Connect to the PostgreSQL server using `psql` and import a SQL file.
-- Migrate images to the Azure Blob Storage account.
-- Run the application interactively via the command line.
-- Confirm the application runs correctly.
-
-## Deploy a storage account using deploy/vm-postgres.bicep
+## deploy a storage account using deploy/vm-postgres.bicep
 
 ```bash
 az deployment group create \
@@ -25,7 +12,7 @@ az deployment group create \
         deployStorage=true
 ```
 
-## Add the current user to the 'Storage Blob Data Owner' role
+## add the current user to the 'Storage Blob Data Owner' role
 
 ```bash
 STORAGE_ACCOUNT_ID=$(az storage account list \
@@ -43,7 +30,7 @@ az role assignment create \
     --scope $STORAGE_ACCOUNT_ID
 ```
 
-## Create a container called 'container1' in the storage account
+## create a container called 'container1' in the storage account
 
 ```bash
 STORAGE_ACCOUNT_NAME=$(az storage account list \
@@ -59,7 +46,7 @@ az storage container create \
     --name container1
 ```
 
-## Upload app/data/postgres/tailwind.sql to the storage account
+## upload app/data/postgres/tailwind.sql to the storage account
 
 ```bash
 az storage blob upload \
@@ -70,7 +57,7 @@ az storage blob upload \
     --name tailwind.sql
 ```
 
-## Connect to azure virtual machine using the az ssh command
+## connect to azure virtual machine using the az ssh command
 
 ```bash
 az ssh vm \
@@ -78,7 +65,7 @@ az ssh vm \
     --name vm-1
 ```
 
-## Download the tailwind.sql file from the storage account
+## download the tailwind.sql file from the storage account
 
 ```bash
 az storage blob download \
@@ -89,7 +76,7 @@ az storage blob download \
     --name tailwind.sql
 ```
 
-### Run the following commands on your local machine
+### run the following commands on your local machine
 
 ```bash
 MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
@@ -103,19 +90,19 @@ export PGUSER=$MANAGED_IDENTITY_NAME
 export PGDATABASE=postgres
 ```
 
-## Import tailwind.sql using psql
+## import tailwind.sql using psql
 
 ```bash
 psql -f tailwind.sql
 ```
 
-## Connect to the postgres server to confirm our import was successful
+## connect to the postgres server to confirm our import was successful
 
 ```
 psql
 ```
 
-## List the tables
+## list the tables
 ```bash
 \dt
 ```
@@ -144,7 +131,7 @@ postgres=> \dt
 (14 rows)
 ```
 
-## Run a sql query to list the tables
+## run a sql query to list the tables
 ```
 SELECT table_name
 FROM information_schema.tables
@@ -176,7 +163,7 @@ WHERE table_schema = 'public';
 (14 rows)
 ```
 
-## Set expanded mode to on and select from the products table
+## set expanded mode to on and select from the products table
 
 ```
 postgres=> \x
@@ -209,13 +196,13 @@ updated_at         | ...
 ...
 ```
 
-## Exit psql
+## exit psql
 
 ```
 \q
 ```
 
-## Migrate images to the storage account into a subfolder images/
+## migrate images to the storage account into a subfolder images/
 
 ```bash
 az storage blob upload-batch \
@@ -246,7 +233,7 @@ output should be as follows:
 ]
 ```
 
-## Run our application interactively via the command line
+## run our application interactively via the command line
 
 change to the directory that contains our application
 
@@ -259,8 +246,3 @@ run the application interactively from the command line
 ```bash
 go run main.go app:serve
 ```
-
-## Resources
-- [Azure Blob Storage Documentation](https://learn.microsoft.com/en-us/azure/storage/blobs/)
-- [Azure Role-Based Access Control (RBAC) Documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
-

@@ -2,9 +2,16 @@
 
 ## Introduction
 
-In this module you will configure a Linux application workload to connect to an Azure Database for PostgreSQL using a system-assigned managed identity. You will connect to the Azure Virtual Machine using the Azure CLI, install the necessary tools, and connect to the PostgreSQL server using psql. You will then clone the repository containing the sample application, run the application, and confirm it can connect to the PostgreSQL server using the managed identity.
+In this module, you will:
 
-## Get the currently logged-in user and the VM ID
+- Configure a Linux application workload to connect to an Azure Database for PostgreSQL using a system-assigned managed identity.
+- Connect to the Azure Virtual Machine using the Azure CLI.
+- Install the necessary tools.
+- Connect to the PostgreSQL server using `psql`.
+- Clone the repository containing the sample application.
+- Run the application and confirm it can connect to the PostgreSQL server using the managed identity.
+
+## Get the Currently Logged-In User and the VM ID
 
 ```bash
 USER_ID=$(az ad signed-in-user show --query id --output tsv)
@@ -20,32 +27,33 @@ az role assignment create \
     --role "Virtual Machine Administrator Login"
 ```
 
-## connect to azure virtual machine using the az ssh command
+## Connect to the Azure Virtual Machine Using the Azure CLI
 
 ```bash
 az ssh vm --resource-group 240900-linux-postgres --name vm-1
 ```
 
-## install psql, and go (golang) on the virtual machine
+## Install psql and Go (golang) on the Virtual Machine
+
 
 ```bash
 sudo apt-get update
 sudo apt-get install -y postgresql-client golang-go
 ```
 
-## confirm the version of psql
+## Confirm the version of psql
     
 ```bash
 psql --version
 ```
 
-## install the azure cli
+## Install the Azure CLI on the Virtual Machine
 
-```
+```bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 
-## login using the system assigned managed identity
+## Login to the Azure CLI using the System Assigned Managed Identity
 
 ```bash
 az login --identity
@@ -74,9 +82,9 @@ $ az login --identity
 ]
 ```
 
-## connect to the postgres server using bash and psql
+## Connect to the PostgreSQL server using bash and psql
 
-### run the following commands on your local machine
+Run the following commands on the remote machine
 
 ```bash
 MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
@@ -105,22 +113,23 @@ postgres=> \q
 $ 
 ```
 
-## Clone the repository on your remote machine
+## Clone the sample application, Tailwind Traders (Go), to the machine
+
+Run the following commands on the remote machine
 
 ```bash
 git clone https://github.com/asw101/tt-go.git
 ```
 
-## Change to the application directory
+Change to the application directory
 
 ```bash
-cd tt-go/
+cd tt-go/app/
 ```
 
-## Run the application
+Run the application
 
 ```bash
-cd app/
 go run main.go
 ```
 
@@ -145,7 +154,7 @@ Targets:
   app:token    gets a token using `azidentity.NewDefaultAzureCredential`
 ```
 
-## connect to the psql server using go
+## Connect to the PostgreSQL server using Tailwind Trader (Go)'s `app:token` target
 
 ```bash
 MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
@@ -162,6 +171,11 @@ export PGDATABASE=postgres
 psql
 ```
 
-## resources
-- https://learn.microsoft.com/en-us/entra/identity/devices/howto-vm-sign-in-azure-ad-linux
-- https://learn.microsoft.com/en-us/azure/postgresql/single-server/how-to-connect-with-managed-identity
+## Resources
+- [Sign in to a Linux virtual machine in Azure using Azure AD](https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux)
+- [Connect to an Azure Database for PostgreSQL server using a managed identity](https://learn.microsoft.com/azure/postgresql/single-server/how-to-connect-with-managed-identity)
+
+
+## Next
+
+[Module 4: Explore and run Linux and PostgreSQL workloads​](./MODULE-4.md)

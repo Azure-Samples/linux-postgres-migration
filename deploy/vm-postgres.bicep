@@ -1,6 +1,7 @@
 param location string = resourceGroup().location
 param deployPostgres bool = true
 param deployVm bool = true
+param deployStorage bool = false
 param sshKey string = ''
 
 var keyData = sshKey != ''
@@ -19,6 +20,7 @@ var managedIdentityName = '${resourceGroup().name}-identity'
 var nsgName = '${resourceGroup().name}-nsg'
 var vmName = 'vm-1'
 var postgresName = 'postgres-${rand}'
+var storageAccountName = 'storage${rand}'
 var addressPrefix = '10.0.0.0/16'
 
 resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2018-11-30' = {
@@ -142,5 +144,34 @@ module flexibleServer 'br/public:avm/res/db-for-postgre-sql/flexible-server:0.2.
     geoRedundantBackup: 'Disabled'
     highAvailability: 'Disabled'
     location: location
+  }
+}
+
+module storageAccount 'br/public:avm/res/storage/storage-account:0.13.3' = if (deployStorage){
+  name: 'storageAccountDeployment'
+  params: {
+    // Required parameters
+    name: storageAccountName
+    // Non-required parameters
+    kind: 'BlobStorage'
+    location: location
+    skuName: 'Standard_LRS'
+    allowSharedKeyAccess: false
+    networkAcls: {
+      defaultAction: 'Allow'
+      bypass: 'AzureServices'
+      virtualNetworkRules: []
+      ipRules: []
+    }
+    roleAssignments: [
+      {
+        principalId: virtualMachine.outputs.systemAssignedMIPrincipalId
+        roleDefinitionIdOrName: 'Storage Blob Data Owner'
+      }
+      {
+        principalId: managedIdentity.properties.principalId
+        roleDefinitionIdOrName: 'Storage Blob Data Owner'
+      }
+    ]
   }
 }
