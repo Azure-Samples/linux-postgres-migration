@@ -142,7 +142,7 @@ postgres=> \dt
 (14 rows)
 ```
 
-## Run a sql query to list the tables
+## Run a sql query listing the tables
 ```
 SELECT table_name
 FROM information_schema.tables
@@ -259,5 +259,5 @@ go run main.go app:serve
 ```
 
 ## Resources
-- [Azure Blob Storage Documentation](https://learn.microsoft.com/en-us/azure/storage/blobs/)
-- [Azure Role-Based Access Control (RBAC) Documentation](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
+- [Azure Blob Storage Documentation](/azure/storage/blobs/)
+- [Azure Role-Based Access Control (RBAC) Documentation](/azure/role-based-access-control/overview)
