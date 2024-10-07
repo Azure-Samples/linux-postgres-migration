@@ -1,5 +1,5 @@
 # APPLICATION
 
-This directory contains our application workload (stubbed out for now) in tt-go/ and related data in data/.
+This directory contains the data for our application workload in app/data.
 
-NOTE: These are primarily for testing purposes and will be updated prior to final deployment.
+Our workload is Tailwind Traders (Go) which is available at https://github.com/Azure-Samples/tailwind-traders-go
