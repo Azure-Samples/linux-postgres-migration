@@ -1,6 +1,6 @@
 # Module 1: Migrate Linux and PostgreSQL workloads
 
-## Introduction 
+## Introduction
 
 In this Learning Path, you'll be guided through a series of modules that enable you to migrate an existing workload from an on-premises or cloud environment to Azure. It covers the migration of the compute to an Azure Virtual Machine and the data to Azure Database for PostgreSQL. The application is a cloud-agnostic sample application that is a stand-in for any real-world application prepared for migration to the cloud. You explore the value of shifting from a self-hosted environment, such as from a self-managed database to a fully managed database offering and from bare-metal compute to cloud-hosted virtual machines with the benefit of a full suite of security and identity controls provided by Azure, such as Microsoft Entra ID. You'll also explore the benefits of managing resources in the cloud from a cost and performance perspective. You'll learn how to precisely calculate and manage costs before and after deployment, as well as how to optimize performance from both a compute and a data perspective. 
 
