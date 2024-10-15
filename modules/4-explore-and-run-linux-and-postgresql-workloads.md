@@ -17,6 +17,8 @@ In this module, you will:
 
 ## Deploy a storage account using deploy/vm-postgres.bicep
 
+Run the following command on your local machine.
+
 ```bash
 az deployment group create \
     --resource-group 240900-linux-postgres \
@@ -113,6 +115,8 @@ az ssh vm \
 
 ## Download the tailwind.sql file from the storage account
 
+Run the following command on the Azure Virtual Machine.
+
 ```bash
 az storage blob download \
     --account-name $STORAGE_ACCOUNT_NAME \
@@ -122,7 +126,7 @@ az storage blob download \
     --name tailwind.sql
 ```
 
-### Run the following commands on your local machine
+### Set the environment variables for psql on the remote machine
 
 ```bash
 MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
@@ -142,13 +146,14 @@ export PGDATABASE=postgres
 psql -f tailwind.sql
 ```
 
-## Connect to the postgres server to confirm our import was successful
+## Connect to the postgres server to confirm the import was successful
 
-```
+```bash
 psql
 ```
 
 ## List the tables
+
 ```bash
 \dt
 ```
@@ -211,14 +216,27 @@ WHERE table_schema = 'public';
 
 ## Set expanded mode to on and select from the products table
 
+At the `postgres=> ` prompt, set expanded mode to on.
+
+```
+\x
+```
+
+Select from the products table.
+
+```
+select * from products;
+```
+
+The prompt should appear as follows:
+
 ```
 postgres=> \x
 Expanded display is on.
 postgres=> select * from products;
 ```
 
-You should see a listing of products:
-
+You will see a listing of products:
 
 ```
 id                 | 1
@@ -242,6 +260,8 @@ updated_at         | ...
 ...
 ```
 
+Press `<space>` to page through the results. Press `q` to exit the pager.
+
 ## Exit psql
 
 ```
@@ -250,7 +270,7 @@ updated_at         | ...
 
 ## Run our application interactively via the command line
 
-Change to the directory that contains our application
+On the remote machine, change to the directory that contains our application
 
 ```bash
 cd tailwind-traders-go/app

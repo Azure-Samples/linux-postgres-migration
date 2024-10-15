@@ -37,9 +37,15 @@ az ssh vm --resource-group 240900-linux-postgres --name vm-1
 
 ## Install psql and Go (golang) on the Virtual Machine
 
+Update the package list.
 
 ```bash
 sudo apt-get update
+```
+
+Install the PostgreSQL client and Go (golang) on the Virtual Machine.
+
+```bash
 sudo apt-get install -y postgresql-client golang-go
 ```
 
@@ -174,6 +180,20 @@ export PGDATABASE=postgres
 
 # login using psql
 psql
+```
+
+## Quit psql and disconnect from the remote machine
+
+Quit psql.
+
+```bash
+\q
+```
+
+Disconnect from the remote machine.
+
+```bash
+exit
 ```
 
 ## Resources
