@@ -28,6 +28,7 @@ var rand = substring(uniqueString(resourceGroup().id), 0, 6)
 var virtualNetworkName = '${resourceGroup().name}-vnet'
 var managedIdentityName = '${resourceGroup().name}-identity'
 var nsgName = '${resourceGroup().name}-nsg'
+var asgName = '${resourceGroup().name}-asg-app'
 var vmName = 'vm-1'
 var postgresName = 'postgres-${rand}'
 var storageAccountName = 'storage${rand}'
@@ -73,6 +74,36 @@ module networkSecurityGroup 'br/public:avm/res/network/network-security-group:0.
   params: {
     name: nsgName
     location: location
+    securityRules: [
+      {
+        name: 'AllowAnyCustom8080Inbound'
+        properties: {
+          access: 'Allow'
+          // destinationAddressPrefix: '*'
+          destinationApplicationSecurityGroupResourceIds: [
+            applicationSecurityGroup.outputs.resourceId
+          ]
+          destinationPortRanges: [
+            '8080'
+          ]
+          direction: 'Inbound'
+          priority: 110
+          protocol: '*'
+          sourceAddressPrefix: '*'
+          sourcePortRange: '*'
+        }
+      }
+    ]
+  }
+}
+
+module applicationSecurityGroup 'br/public:avm/res/network/application-security-group:0.2.0' = if (deployVm) {
+  name: 'applicationSecurityGroupDeployment'
+  params: {
+    // Required parameters
+    name: asgName
+    // Non-required parameters
+    location: location
   }
 }
 
@@ -99,6 +130,9 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.6.0' = if (de
               name: '${vmName}-ip'
             }
             subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0]
+            applicationSecurityGroupResourceIds: [
+              applicationSecurityGroup.outputs.resourceId
+            ]
           }
         ]
         nicSuffix: '-nic-01'
