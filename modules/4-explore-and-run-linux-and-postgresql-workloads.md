@@ -5,11 +5,13 @@
 In this module, you will:
 
 - Deploy an Azure Blob Storage account using a Bicep template.
-- Create a Blob Storage container and upload a file.
+- Create a Blob Storage container.
+- Migrate images to the Azure Blob Storage account.
+- Upload tailwind.sql to the Azure Blob Storage account.
 - Connect to the Azure Virtual Machine using the Azure CLI.
 - Download the file from the storage account.
 - Connect to the PostgreSQL server using `psql` and import a SQL file.
-- Migrate images to the Azure Blob Storage account.
+
 - Run the application interactively via the command line.
 - Confirm the application runs correctly.
 
@@ -57,6 +59,37 @@ az storage container create \
     --account-name $STORAGE_ACCOUNT_NAME \
     --auth-mode login \
     --name container1
+```
+
+## Migrate images to the storage account into a subfolder images/
+
+```bash
+az storage blob upload-batch \
+    --account-name $STORAGE_ACCOUNT_NAME \
+    --auth-mode login \
+    --overwrite \
+    --destination container1/images \
+    --source app/data/images
+```
+
+Output should be as follows:
+
+```
+[
+  {
+    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
+    "Last Modified": "...",
+    "Type": "image/jpeg",
+    "eTag": "\"0x8DCE0CA938AF41B\""
+  },
+  {
+    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
+    "Last Modified": "...",
+    "Type": "image/jpeg",
+    "eTag": "\"0x8DCE0CA939DF18B\""
+  },
+  ...
+]
 ```
 
 ## Upload app/data/postgres/tailwind.sql to the storage account
@@ -213,37 +246,6 @@ updated_at         | ...
 
 ```
 \q
-```
-
-## Migrate images to the storage account into a subfolder images/
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_ACCOUNT_NAME \
-    --auth-mode login \
-    --overwrite \
-    --destination container1/images \
-    --source app/data/images
-```
-
-Output should be as follows:
-
-```
-[
-  {
-    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
-    "Last Modified": "...",
-    "Type": "image/jpeg",
-    "eTag": "\"0x8DCE0CA938AF41B\""
-  },
-  {
-    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
-    "Last Modified": "...",
-    "Type": "image/jpeg",
-    "eTag": "\"0x8DCE0CA939DF18B\""
-  },
-  ...
-]
 ```
 
 ## Run our application interactively via the command line
