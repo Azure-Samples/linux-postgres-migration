@@ -105,7 +105,7 @@ az storage blob upload \
     --name tailwind.sql
 ```
 
-## Connect to azure virtual machine using the az ssh command
+## Connect to Azure virtual machine using the az ssh command
 
 ```bash
 az ssh vm \
@@ -282,7 +282,7 @@ Run the application interactively from the command line
 go run main.go app:serve
 ```
 
-You will see the following output:
+You'll see the following output:
 
 ```
 $ go run main.go app:serve
@@ -307,11 +307,11 @@ Output the URL to the terminal.
 echo "Your URL is: http://${IP_ADDRESS}:8080"
 ```
 
-Note we are using port 8080 for interactive test/dev purposes. In production you would use port 443 and require a TLS certificate to secure traffic to the endpoint.
+Note we're using port 8080 for interactive test/dev purposes. In production, you would use port 443 and require a TLS certificate to secure traffic to the endpoint.
 
 ## Browse the public API endpoint
 
-Open the URL in a web browser and you should see the below output.
+Open the URL in a web browser and you should see the following output.
 
 ```
 {
@@ -342,11 +342,11 @@ Alternatively you can make a request to the API endpoint using `curl`.
 curl "http://${IP_ADDRESS}:8080"
 ```
 
-This endpoint will provide the details of a random product from the database.
+This endpoint displays a random product from the database.
 
 ## View requests logged to the terminal
 
-Return to the terminal where you are running the application interactively. The output shows the request to the API endpoint.
+Return to the terminal where you're running the application interactively. The output shows the request to the API endpoint.
 
 ```
 {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:58592","method":"GET","url":"/"}
@@ -354,13 +354,13 @@ Return to the terminal where you are running the application interactively. The 
 {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/favicon.ico"}
 ```
 
-If these requests are successful, you have successfully migrated the application workload to Azure Virtual Machines and PostgreSQL.
+If these requests are successful, you have successfully migrated the application workload to Azure Virtual Machines and Azure Database for PostgreSQL (Flexible Server).
 
 ## Clean up Azure Resources
 
-Once you have explored and run the Linux and PostgreSQL workloads, you can clean up the resources to save costs. 
+Once you finish exploring and run the Linux and PostgreSQL workloads, you can clean up the resources to save costs. 
 
-You can delete the resource group `240900-linux-postgres` manually via the Azure Portal, or by running the Azure CLI using the command below.
+You can delete the resource group `240900-linux-postgres` manually via the Azure Portal, or run the following Azure CLI command.
 
 ```bash
 az group delete \
@@ -371,9 +371,9 @@ az group delete \
 
 Another useful option is to use the `empty.bicep` template to delete the resources created by the `vm-postgres.bicep` file.
 
-Running `az group deployment create` with the `--mode Complete` will remove any resources not defined in the template. As the template `empty.json` has no resources, this will delete every resource.
+Running `az group deployment create` with the `--mode Complete` removes any resources not defined in the template. As the template `empty.json` has no resources, it deletes every resource.
 
-This leaves the `240900-linux-postgres` resource group intact and lets you re-deploy the resources again with a single command.
+Deploying `empty.json` leaves `240900-linux-postgres` resource group intact and lets you redeploy the resources again with a single command.
 
 ```bash
 az deployment group create \
