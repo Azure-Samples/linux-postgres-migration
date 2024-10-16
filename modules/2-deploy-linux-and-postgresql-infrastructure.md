@@ -44,6 +44,10 @@ If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-az
 
 In order to run commands in Azure using the CLI, you need to sign in first. Sign in using the `az login` command.
 
+```bash
+az login
+```
+
 ## Create a resource group
 
 A resource group is a container for related resources. All resources must be placed in a resource group. The [az group create](/cli/azure/group) command creates a resource group.
@@ -107,26 +111,6 @@ Here you can see the Network Security Group (NSG), `240900-linux-postgres-nsg` t
 
 The NSG is also visible inside the Resource Group. It contains a set of inbound and outbound security rules that control the traffic to and from the Virtual Machine.
 
-## Add an Inbound Security Rule to the Network Security Group
-
-Next you add an inbound security rule to allow SSH traffic from your current IP address to the Virtual Machine.
-
-In a production scenario, you would often use [just-in-time access](/azure/defender-for-cloud/just-in-time-access-usage), [Azure Bastion](/azure/bastion/bastion-overview), or a VPN (such as Azure or a mesh VPN) to secure your Virtual Machine. These security approaches allow you to restrict access to the Virtual Machine to only when needed.
-
-Now add an inbound security rule to the NSG to allow SSH traffic from your current IP address.
-
-Select `240900-linux-postgres-nsg`.
-
-Select **Settings** and then **Inbound security rules**.
-
-Select **Add**.
-
-Under **Source** select `My IP address`.
-
-Under **Service** select `SSH`.
-
-Select **Add**.
-
 ## Return to the Resource Group
 
 At the top of the page, select the breadcrumb link to return to the Resource Group (`Home > Resource groups > 240900-linux-postgres`).
@@ -135,7 +119,27 @@ Note the `240900-linux-postgres-identity` User Assigned Managed Identity is list
 
 You can learn more about System Assigned and User Assigned managed identities in [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview#managed-identity-types).
 
-## View the Azure Database for PostgreSQL's Server Administrator
+## Add an Inbound Security Rule to the Network Security Group
+
+Next you add an inbound security rule to allow SSH traffic from your current IP address to the Virtual Machine.
+
+In a production scenario, you would often use [just-in-time access](/azure/defender-for-cloud/just-in-time-access-usage), [Azure Bastion](/azure/bastion/bastion-overview), or a VPN (such as Azure or a mesh VPN) to secure your Virtual Machine. These security approaches allow you to restrict access to the Virtual Machine to only when needed.
+
+Now add an inbound security rule to the NSG to allow SSH traffic from your current IP address.
+
+1. Select `240900-linux-postgres-nsg`.
+
+1. Select **Settings** and then **Inbound security rules**.
+
+1. Select **Add**.
+
+1. Under **Source** select `My IP address`.
+
+1. Under **Service** select `SSH`.
+
+1. Select **Add**.
+
+## View the Administrator for the Azure Database for PostgreSQL Flexible Server
 
 Find the Azure Database for PostgreSQL flexible server which is named `postgres-xxxxx`, where `xxxxx` is a unique string defined by our Bicep template that remains consistent across deployments to your Subscription and Resource Group.
 
@@ -175,27 +179,27 @@ We use the Azure portal instead of Bicep to create the private endpoint for demo
 
 ## Create a Private Endpoint for Azure Database for PostgreSQL Flexible Server
 
-Select **Settings** and then **Networking**.
+1. Select **Settings** and then **Networking**.
 
-Under **Private endpoint**, select **Add private endpoint**.
+1. Under **Private endpoint**, select **Add private endpoint**.
 
-Under **Basics** enter **Name:** `private-endpoint-1`
+1. Under **Basics** enter **Name:** `private-endpoint-1`
 
-Select **Next**
+1. Select **Next**
 
-Under **Resource**, select **Next**.
+1. Under **Resource**, select **Next**.
 
-Under **Virtual Network**, select **Virtual Network:** `240900-linux-postgres-vnet`. The virtual network is located in the `240900-linux-postgres` Resource Group.
+1. Under **Virtual Network**, select **Virtual Network:** `240900-linux-postgres-vnet`. The virtual network is located in the `240900-linux-postgres` Resource Group.
 
-Select **Next**
+1. Select **Next**
 
-Under **DNS** select **Next**.
+1. Under **DNS** select **Next**.
 
-Under **Review + create** select **Create**.
+1. Under **Review + create** select **Create**.
 
-You are then redirected to a page that says **Deployment is in progress**. Wait for the resources to be deployed.
+1. You are then redirected to a page that says **Deployment is in progress**. Wait for the resources to be deployed.
 
-Once it says **Your deployment is complete**, select **Go to resource**.
+1. Once it says **Your deployment is complete**, select **Go to resource**.
 
 ## Review the Virtual Machine's System assigned managed identity Role Assignments
 

@@ -130,8 +130,10 @@ module virtualMachine 'br/public:avm/res/compute/virtual-machine:0.6.0' = if (de
               name: '${vmName}-ip'
             }
             subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0]
-            applicationSecurityGroupResourceIds: [
-              applicationSecurityGroup.outputs.resourceId
+            applicationSecurityGroups: [
+              {
+                id: applicationSecurityGroup.outputs.resourceId
+              }
             ]
           }
         ]

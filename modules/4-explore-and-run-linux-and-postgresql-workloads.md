@@ -5,15 +5,19 @@
 In this module, you will:
 
 - Deploy an Azure Blob Storage account using a Bicep template.
-- Create a Blob Storage container and upload a file.
+- Create a Blob Storage container.
+- Migrate images to the Azure Blob Storage account.
+- Upload tailwind.sql to the Azure Blob Storage account.
 - Connect to the Azure Virtual Machine using the Azure CLI.
 - Download the file from the storage account.
 - Connect to the PostgreSQL server using `psql` and import a SQL file.
-- Migrate images to the Azure Blob Storage account.
+
 - Run the application interactively via the command line.
 - Confirm the application runs correctly.
 
 ## Deploy a storage account using deploy/vm-postgres.bicep
+
+Run the following command on your local machine.
 
 ```bash
 az deployment group create \
@@ -59,6 +63,37 @@ az storage container create \
     --name container1
 ```
 
+## Migrate images to the storage account into a subfolder images/
+
+```bash
+az storage blob upload-batch \
+    --account-name $STORAGE_ACCOUNT_NAME \
+    --auth-mode login \
+    --overwrite \
+    --destination container1/images \
+    --source app/data/images
+```
+
+Output should be as follows:
+
+```
+[
+  {
+    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
+    "Last Modified": "...",
+    "Type": "image/jpeg",
+    "eTag": "\"0x8DCE0CA938AF41B\""
+  },
+  {
+    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
+    "Last Modified": "...",
+    "Type": "image/jpeg",
+    "eTag": "\"0x8DCE0CA939DF18B\""
+  },
+  ...
+]
+```
+
 ## Upload app/data/postgres/tailwind.sql to the storage account
 
 ```bash
@@ -70,7 +105,7 @@ az storage blob upload \
     --name tailwind.sql
 ```
 
-## Connect to azure virtual machine using the az ssh command
+## Connect to Azure virtual machine using the az ssh command
 
 ```bash
 az ssh vm \
@@ -79,6 +114,19 @@ az ssh vm \
 ```
 
 ## Download the tailwind.sql file from the storage account
+
+Set the bash variable `STORAGE_ACCOUNT_NAME` to the storage account name.
+
+```bash
+STORAGE_ACCOUNT_NAME=$(az storage account list \
+    --resource-group 240900-linux-postgres \
+    --query '[0].name' \
+    -o tsv)
+
+echo "STORAGE_ACCOUNT_NAME: $STORAGE_ACCOUNT_NAME"
+```
+
+Download `tailwind.sql` to the Azure Virtual Machine using the `az storage blob download` command.
 
 ```bash
 az storage blob download \
@@ -89,7 +137,7 @@ az storage blob download \
     --name tailwind.sql
 ```
 
-### Run the following commands on your local machine
+## Set the environment variables for psql on the remote machine
 
 ```bash
 MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
@@ -109,13 +157,14 @@ export PGDATABASE=postgres
 psql -f tailwind.sql
 ```
 
-## Connect to the postgres server to confirm our import was successful
+## Connect to the postgres server to confirm the import was successful
 
-```
+```bash
 psql
 ```
 
 ## List the tables
+
 ```bash
 \dt
 ```
@@ -178,14 +227,27 @@ WHERE table_schema = 'public';
 
 ## Set expanded mode to on and select from the products table
 
+At the `postgres=> ` prompt, set expanded mode to on.
+
+```
+\x
+```
+
+Select from the products table.
+
+```
+select * from products;
+```
+
+The prompt should appear as follows:
+
 ```
 postgres=> \x
 Expanded display is on.
 postgres=> select * from products;
 ```
 
-You should see a listing of products:
-
+You will see a listing of products:
 
 ```
 id                 | 1
@@ -209,46 +271,17 @@ updated_at         | ...
 ...
 ```
 
+Press `<space>` to page through the results. Press `q` to exit the pager.
+
 ## Exit psql
 
 ```
 \q
 ```
 
-## Migrate images to the storage account into a subfolder images/
-
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_ACCOUNT_NAME \
-    --auth-mode login \
-    --overwrite \
-    --destination container1/images \
-    --source app/data/images
-```
-
-Output should be as follows:
-
-```
-[
-  {
-    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
-    "Last Modified": "...",
-    "Type": "image/jpeg",
-    "eTag": "\"0x8DCE0CA938AF41B\""
-  },
-  {
-    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
-    "Last Modified": "...",
-    "Type": "image/jpeg",
-    "eTag": "\"0x8DCE0CA939DF18B\""
-  },
-  ...
-]
-```
-
 ## Run our application interactively via the command line
 
-Change to the directory that contains our application
+On the remote machine, change to the directory that contains our application
 
 ```bash
 cd tailwind-traders-go/app
@@ -260,7 +293,7 @@ Run the application interactively from the command line
 go run main.go app:serve
 ```
 
-You will see the following output:
+You'll see the following output:
 
 ```
 $ go run main.go app:serve
@@ -285,11 +318,11 @@ Output the URL to the terminal.
 echo "Your URL is: http://${IP_ADDRESS}:8080"
 ```
 
-Note we are using port 8080 for interactive test/dev purposes. In production you would use port 443 and require a TLS certificate to secure traffic to the endpoint.
+Note we're using port 8080 for interactive test/dev purposes. In production, you would use port 443 and require a TLS certificate to secure traffic to the endpoint.
 
 ## Browse the public API endpoint
 
-Open the URL in a web browser and you should see the below output.
+Open the URL in a web browser and you should see the following output.
 
 ```
 {
@@ -320,11 +353,11 @@ Alternatively you can make a request to the API endpoint using `curl`.
 curl "http://${IP_ADDRESS}:8080"
 ```
 
-This endpoint will provide the details of a random product from the database.
+This endpoint displays a random product from the database.
 
 ## View requests logged to the terminal
 
-Return to the terminal where you are running the application interactively. The output shows the request to the API endpoint.
+Return to the terminal where you're running the application interactively. The output shows the request to the API endpoint.
 
 ```
 {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:58592","method":"GET","url":"/"}
@@ -332,13 +365,13 @@ Return to the terminal where you are running the application interactively. The 
 {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/favicon.ico"}
 ```
 
-If these requests are successful, you have successfully migrated the application workload to Azure Virtual Machines and PostgreSQL.
+If these requests are successful, you have successfully migrated the application workload to Azure Virtual Machines and Azure Database for PostgreSQL (Flexible Server).
 
 ## Clean up Azure Resources
 
-Once you have explored and run the Linux and PostgreSQL workloads, you can clean up the resources to save costs. 
+Once you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs. 
 
-You can delete the resource group `240900-linux-postgres` manually via the Azure Portal, or by running the Azure CLI using the command below.
+You can delete the resource group `240900-linux-postgres` manually via the Azure portal, or run the following Azure CLI command.
 
 ```bash
 az group delete \
@@ -349,9 +382,9 @@ az group delete \
 
 Another useful option is to use the `empty.bicep` template to delete the resources created by the `vm-postgres.bicep` file.
 
-Running `az group deployment create` with the `--mode Complete` will remove any resources not defined in the template. As the template `empty.json` has no resources, this will delete every resource.
+Running `az group deployment create` with the `--mode Complete` removes any resources not defined in the template. As the template `empty.json` has no resources, it deletes every resource.
 
-This leaves the `240900-linux-postgres` resource group intact and lets you re-deploy the resources again with a single command.
+Deploying `empty.json` leaves the `240900-linux-postgres` resource group intact and lets you redeploy the resources again with a single command.
 
 ```bash
 az deployment group create \
