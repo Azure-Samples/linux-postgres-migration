@@ -44,6 +44,10 @@ If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-az
 
 In order to run commands in Azure using the CLI, you need to sign in first. Sign in using the `az login` command.
 
+```bash
+az login
+```
+
 ## Create a resource group
 
 A resource group is a container for related resources. All resources must be placed in a resource group. The [az group create](/cli/azure/group) command creates a resource group.
@@ -135,7 +139,7 @@ Now add an inbound security rule to the NSG to allow SSH traffic from your curre
 
 1. Select **Add**.
 
-## View the Azure Database for PostgreSQL's Server Administrator
+## View the Administrator for the Azure Database for PostgreSQL Flexible Server
 
 Find the Azure Database for PostgreSQL flexible server which is named `postgres-xxxxx`, where `xxxxx` is a unique string defined by our Bicep template that remains consistent across deployments to your Subscription and Resource Group.
 
