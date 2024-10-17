@@ -1,4 +1,4 @@
-# Linux and Postgres Migration Learning Path 
+# Linux and Postgres Migration
 
 ## Module 1: Migrate Linux and PostgreSQL workloads
 [Start Module 1](./1-migrate-linux-and-postgresql-workloads.md)
