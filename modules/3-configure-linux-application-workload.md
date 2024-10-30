@@ -5,7 +5,7 @@
 In this module, you will:
 
 - Configure a Linux application workload to connect to an Azure Database for PostgreSQL using a system-assigned managed identity.
-- Connect to the [Azure Virtual Machine using the Azure CLI](/azure/virtual-machines/linux/quick-create-cli). 
+- Connect to the [Azure Virtual Machine using the Azure CLI][docs-rel-1]. 
 - Install the necessary tools.
 - Connect to the PostgreSQL server using `psql`.
 - Clone the repository containing the sample application.
@@ -20,7 +20,7 @@ VM_ID=$(az vm show --resource-group 240900-linux-postgres --name vm-1 --query id
 
 ## Assign the 'Virtual Machine Administrator Login' role to the user for the VM
 
-You can read more about the Privileged role in Azure VMs on the [Azure built-in roles for Privileged](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator).
+You can read more about the Privileged role in Azure VMs on the [Azure built-in roles for Privileged][docs-rel-2].
 
 ```bash
 az role assignment create \
@@ -197,7 +197,15 @@ exit
 ```
 
 ## Resources
-- [Sign in to a Linux virtual machine in Azure using Azure AD](/entra/identity/devices/howto-vm-sign-in-azure-ad-linux)
-- [Connect to an Azure Database for PostgreSQL server using a managed identity](/azure/postgresql/single-server/how-to-connect-with-managed-identity)
-- [Create a Linux virtual machine with the Azure CLI on Azure](/azure/virtual-machines/linux/quick-create-cli). 
-- [Azure built-in roles for Privileged](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator).
+- [Sign in to a Linux virtual machine in Azure using Azure AD][3]
+- [Connect to an Azure Database for PostgreSQL server using a managed identity][docs-rel-4]
+- [Create a Linux virtual machine with the Azure CLI on Azure][docs-rel-1]. 
+- [Azure built-in roles for Privileged][docs-rel-2].
+
+[docs-rel-1]: /azure/virtual-machines/linux/quick-create-cli
+[docs-abs-1]: https://learn.microsoft.com/azure/virtual-machines/linux/quick-create-cli
+[docs-rel-2]: /azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
+[docs-abs-2]: https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
+[3]: /entra/identity/devices/howto-vm-sign-in-azure-ad-linux
+[docs-rel-4]: /azure/postgresql/single-server/how-to-connect-with-managed-identity
+[docs-abs-4]: https://learn.microsoft.com/azure/postgresql/single-server/how-to-connect-with-managed-identity
