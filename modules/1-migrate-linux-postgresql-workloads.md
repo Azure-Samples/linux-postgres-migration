@@ -97,22 +97,35 @@ To complete this module, you need the Azure CLI. You can install the Azure CLI o
 - [GitHub Codespaces][18]
 
 [docs-rel-1]: /azure/postgresql/flexible-server/concepts-data-encryption
+[docs-abs-1]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-data-encryption
 [docs-rel-2]: /azure/postgresql/flexible-server/concepts-compliance
+[docs-abs-2]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-compliance
 [docs-rel-3]: /azure/postgresql/flexible-server/concepts-security#microsoft-defender-for-cloud-support
+[docs-abs-3]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-security#microsoft-defender-for-cloud-support
 [docs-rel-4]: /azure/postgresql/flexible-server/concepts-azure-ad-authentication
+[docs-abs-4]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-azure-ad-authentication
 [docs-rel-5]: /azure/virtual-machines/sizes/overview
+[docs-abs-5]: https://learn.microsoft.com/azure/virtual-machines/sizes/overview
 [docs-rel-6]: /azure/postgresql/flexible-server/concepts-compute
+[docs-abs-6]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-compute
 [7]: https://azure.microsoft.com/explore/global-infrastructure/products-by-region
 [docs-rel-8]: /azure/postgresql/flexible-server/concepts-read-replicas
+[docs-abs-8]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-read-replicas
 [docs-rel-9]: /azure/cosmos-db/postgresql/introduction
+[docs-abs-9]: https://learn.microsoft.com/azure/cosmos-db/postgresql/introduction
 [docs-rel-10]: /azure/virtual-machines/disks-types
+[docs-abs-10]: https://learn.microsoft.com/azure/virtual-machines/disks-types
 [docs-rel-11]: /azure/virtual-machines/linux/azure-hybrid-benefit-linux
+[docs-abs-11]: https://learn.microsoft.com/azure/virtual-machines/linux/azure-hybrid-benefit-linux
 [docs-rel-12]: /azure/cost-management-billing/manage/understand-vm-reservation-charges
+[docs-abs-12]: https://learn.microsoft.com/azure/cost-management-billing/manage/understand-vm-reservation-charges
 [13]: https://azure.microsoft.com/pricing/calculator/
 [14]: https://github.com/Azure-Samples/tailwind-traders-go
 [15]: https://github.com/Azure-Samples/linux-postgres-migration
 [16]: https://azure.microsoft.com/free/
 [docs-rel-17]: /azure/cloud-shell/overview
+[docs-abs-17]: https://learn.microsoft.com/azure/cloud-shell/overview
 [18]: https://github.com/features/codespaces
 [docs-rel-19]: /cli/azure/install-azure-cli
+[docs-abs-19]: https://learn.microsoft.com/cli/azure/install-azure-cli
 [20]: https://git-scm.com/
