@@ -197,7 +197,7 @@ exit
 ```
 
 ## Resources
-- [Sign in to a Linux virtual machine in Azure using Azure AD][3]
+- [Sign in to a Linux virtual machine in Azure using Azure AD][docs-rel-3]
 - [Connect to an Azure Database for PostgreSQL server using a managed identity][docs-rel-4]
 - [Create a Linux virtual machine with the Azure CLI on Azure][docs-rel-1]. 
 - [Azure built-in roles for Privileged][docs-rel-2].
@@ -206,6 +206,7 @@ exit
 [docs-abs-1]: https://learn.microsoft.com/azure/virtual-machines/linux/quick-create-cli
 [docs-rel-2]: /azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
 [docs-abs-2]: https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
-[3]: /entra/identity/devices/howto-vm-sign-in-azure-ad-linux
+[docs-rel-3]: /entra/identity/devices/howto-vm-sign-in-azure-ad-linux
+[docs-abs-3]: https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux
 [docs-rel-4]: /azure/postgresql/single-server/how-to-connect-with-managed-identity
 [docs-abs-4]: https://learn.microsoft.com/azure/postgresql/single-server/how-to-connect-with-managed-identity
