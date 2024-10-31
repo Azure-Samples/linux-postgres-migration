@@ -5,7 +5,7 @@
 In this module, you will:
 
 - Configure a Linux application workload to connect to an Azure Database for PostgreSQL using a system-assigned managed identity.
-- Connect to the [Azure Virtual Machine using the Azure CLI](/azure/virtual-machines/linux/quick-create-cli). 
+- Connect to the [Azure Virtual Machine using the Azure CLI][docs-url-1]. 
 - Install the necessary tools.
 - Connect to the PostgreSQL server using `psql`.
 - Clone the repository containing the sample application.
@@ -20,7 +20,7 @@ VM_ID=$(az vm show --resource-group 240900-linux-postgres --name vm-1 --query id
 
 ## Assign the 'Virtual Machine Administrator Login' role to the user for the VM
 
-You can read more about the Privileged role in Azure VMs on the [Azure built-in roles for Privileged](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator).
+You can read more about the Privileged role in Azure VMs on the [Azure built-in roles for Privileged][docs-url-2].
 
 ```bash
 az role assignment create \
@@ -61,7 +61,7 @@ psql --version
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 
-## Login to the Azure CLI using the System Assigned Managed Identity
+## Log in to the Azure CLI using the System Assigned Managed Identity
 
 ```bash
 az login --identity
@@ -197,7 +197,16 @@ exit
 ```
 
 ## Resources
-- [Sign in to a Linux virtual machine in Azure using Azure AD](/entra/identity/devices/howto-vm-sign-in-azure-ad-linux)
-- [Connect to an Azure Database for PostgreSQL server using a managed identity](/azure/postgresql/single-server/how-to-connect-with-managed-identity)
-- [Create a Linux virtual machine with the Azure CLI on Azure](/azure/virtual-machines/linux/quick-create-cli). 
-- [Azure built-in roles for Privileged](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator).
+- [Sign in to a Linux virtual machine in Azure using Azure AD][docs-url-3]
+- [Connect to an Azure Database for PostgreSQL server using a managed identity][docs-url-4]
+- [Create a Linux virtual machine with the Azure CLI on Azure][docs-url-1]. 
+- [Azure built-in roles for Privileged][docs-url-2].
+
+[docs-alt-1]: /azure/virtual-machines/linux/quick-create-cli
+[docs-url-1]: https://learn.microsoft.com/azure/virtual-machines/linux/quick-create-cli
+[docs-alt-2]: /azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
+[docs-url-2]: https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
+[docs-alt-3]: /entra/identity/devices/howto-vm-sign-in-azure-ad-linux
+[docs-url-3]: https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux
+[docs-alt-4]: /azure/postgresql/single-server/how-to-connect-with-managed-identity
+[docs-url-4]: https://learn.microsoft.com/azure/postgresql/single-server/how-to-connect-with-managed-identity
