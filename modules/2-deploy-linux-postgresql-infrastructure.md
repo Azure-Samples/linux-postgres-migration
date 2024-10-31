@@ -12,7 +12,7 @@ The key resources deployed are:
 
 - Virtual Machine (VM) running Linux (Ubuntu 24.04 LTS).
 - Azure Database for Postgres running [Postgres 16 or above][2].
-- A [Managed Identity][3] to enable secure access from the VM to the database.
+- A [Managed Identity][docs-rel-3] to enable secure access from the VM to the database.
 - [Role-Based Access Controls (RBAC)][docs-rel-4] including roles to access the database as an administrator, and more restrictive roles for the application itself.
 - A Virtual Network for both the VM and database.
 
@@ -117,7 +117,7 @@ At the top of the page, select the breadcrumb link to return to the Resource Gro
 
 Note the `240900-linux-postgres-identity` User Assigned Managed Identity is listed in the Resource Group.
 
-You can learn more about System Assigned and User Assigned managed identities in [What are managed identities for Azure resources?][11].
+You can learn more about System Assigned and User Assigned managed identities in [What are managed identities for Azure resources?][docs-rel-11].
 
 ## Add an Inbound Security Rule to the Network Security Group
 
@@ -227,9 +227,9 @@ Next you will explore and configure the deployed infrastructure.
 - [Bicep Documentation][docs-rel-1]
 - [Create a resource group using Azure CLI][docs-rel-8]
 - [Azure Role-Based Access Controls (RBAC)][docs-rel-4] 
-- [Azure Managed Identity][3]
+- [Azure Managed Identity][docs-rel-3]
 - [What is Bicep?][docs-rel-1]
-- [What are managed identities for Azure resources?][11]
+- [What are managed identities for Azure resources?][docs-rel-11]
 - [Enable just-in-time access on VMs][docs-rel-12]
 - [What is Azure Bastion?][docs-rel-13]
 - [Microsoft Entra authentication with Azure Database for PostgreSQL - Flexible Server][docs-rel-14]
@@ -240,7 +240,8 @@ Next you will explore and configure the deployed infrastructure.
 [docs-rel-1]: /azure/azure-resource-manager/bicep/overview?tabs=bicep
 [docs-abs-1]: https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep
 [2]: https://www.postgresql.org/download/
-[3]: /entra/identity/managed-identities-azure-resources/overview
+[docs-rel-3]: /entra/identity/managed-identities-azure-resources/overview
+[docs-abs-3]: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview
 [docs-rel-4]: /azure/role-based-access-control/overview
 [docs-abs-4]: https://learn.microsoft.com/azure/role-based-access-control/overview
 [5]: https://azure.github.io/Azure-Verified-Modules/
@@ -251,7 +252,8 @@ Next you will explore and configure the deployed infrastructure.
 [docs-abs-8]: https://learn.microsoft.com/cli/azure/group
 [9]: https://github.com/Azure-Samples/linux-postgres-migration/blob/main/deploy/vm-postgres.bicep
 [10]: https://portal.azure.com
-[11]: /entra/identity/managed-identities-azure-resources/overview#managed-identity-types
+[docs-rel-11]: /entra/identity/managed-identities-azure-resources/overview#managed-identity-types
+[docs-abs-11]: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#managed-identity-types
 [docs-rel-12]: /azure/defender-for-cloud/just-in-time-access-usage
 [docs-abs-12]: https://learn.microsoft.com/azure/defender-for-cloud/just-in-time-access-usage
 [docs-rel-13]: /azure/bastion/bastion-overview
