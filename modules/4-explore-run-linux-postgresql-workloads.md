@@ -397,8 +397,7 @@ az deployment group create \
 - [Azure Blob Storage Documentation][docs-url-1]
 - [Azure Role-Based Access Control (RBAC) Documentation][docs-url-2]
 
-
-[docs-url-1]: /azure/storage/blobs/
-[docs-alt-1]: https://learn.microsoft.com/azure/storage/blobs/
-[docs-url-2]: /azure/role-based-access-control/overview
-[docs-alt-2]: https://learn.microsoft.com/azure/role-based-access-control/overview
+[docs-alt-1]: /azure/storage/blobs/
+[docs-url-1]: https://learn.microsoft.com/azure/storage/blobs/
+[docs-alt-2]: /azure/role-based-access-control/overview
+[docs-url-2]: https://learn.microsoft.com/azure/role-based-access-control/overview

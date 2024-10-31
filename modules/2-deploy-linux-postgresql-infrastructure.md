@@ -236,31 +236,30 @@ Next you will explore and configure the deployed infrastructure.
 - [Use Microsoft Entra ID for authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-15]
 - [Azure Database for PostgreSQL - Flexible Server networking with Private Link][docs-url-16]
 
-
-[docs-url-1]: /azure/azure-resource-manager/bicep/overview?tabs=bicep
-[docs-alt-1]: https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep
+[docs-alt-1]: /azure/azure-resource-manager/bicep/overview?tabs=bicep
+[docs-url-1]: https://learn.microsoft.com/azure/azure-resource-manager/bicep/overview?tabs=bicep
 [2]: https://www.postgresql.org/download/
-[docs-url-3]: /entra/identity/managed-identities-azure-resources/overview
-[docs-alt-3]: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview
-[docs-url-4]: /azure/role-based-access-control/overview
-[docs-alt-4]: https://learn.microsoft.com/azure/role-based-access-control/overview
+[docs-alt-3]: /entra/identity/managed-identities-azure-resources/overview
+[docs-url-3]: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview
+[docs-alt-4]: /azure/role-based-access-control/overview
+[docs-url-4]: https://learn.microsoft.com/azure/role-based-access-control/overview
 [5]: https://azure.github.io/Azure-Verified-Modules/
 [6]: https://azure.microsoft.com/free/
-[docs-url-7]: /cli/azure/install-azure-cli
-[docs-alt-7]: https://learn.microsoft.com/cli/azure/install-azure-cli
-[docs-url-8]: /cli/azure/group
-[docs-alt-8]: https://learn.microsoft.com/cli/azure/group
+[docs-alt-7]: /cli/azure/install-azure-cli
+[docs-url-7]: https://learn.microsoft.com/cli/azure/install-azure-cli
+[docs-alt-8]: /cli/azure/group
+[docs-url-8]: https://learn.microsoft.com/cli/azure/group
 [9]: https://github.com/Azure-Samples/linux-postgres-migration/blob/main/deploy/vm-postgres.bicep
 [10]: https://portal.azure.com
-[docs-url-11]: /entra/identity/managed-identities-azure-resources/overview#managed-identity-types
-[docs-alt-11]: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#managed-identity-types
-[docs-url-12]: /azure/defender-for-cloud/just-in-time-access-usage
-[docs-alt-12]: https://learn.microsoft.com/azure/defender-for-cloud/just-in-time-access-usage
-[docs-url-13]: /azure/bastion/bastion-overview
-[docs-alt-13]: https://learn.microsoft.com/azure/bastion/bastion-overview
-[docs-url-14]: /azure/postgresql/flexible-server/concepts-azure-ad-authentication
-[docs-alt-14]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-azure-ad-authentication
-[docs-url-15]: /azure/postgresql/flexible-server/how-to-configure-sign-in-azure-ad-authentication
-[docs-alt-15]: https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-configure-sign-in-azure-ad-authentication
-[docs-url-16]: /azure/postgresql/flexible-server/concepts-private-link
-[docs-alt-16]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-private-link
+[docs-alt-11]: /entra/identity/managed-identities-azure-resources/overview#managed-identity-types
+[docs-url-11]: https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview#managed-identity-types
+[docs-alt-12]: /azure/defender-for-cloud/just-in-time-access-usage
+[docs-url-12]: https://learn.microsoft.com/azure/defender-for-cloud/just-in-time-access-usage
+[docs-alt-13]: /azure/bastion/bastion-overview
+[docs-url-13]: https://learn.microsoft.com/azure/bastion/bastion-overview
+[docs-alt-14]: /azure/postgresql/flexible-server/concepts-azure-ad-authentication
+[docs-url-14]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-azure-ad-authentication
+[docs-alt-15]: /azure/postgresql/flexible-server/how-to-configure-sign-in-azure-ad-authentication
+[docs-url-15]: https://learn.microsoft.com/azure/postgresql/flexible-server/how-to-configure-sign-in-azure-ad-authentication
+[docs-alt-16]: /azure/postgresql/flexible-server/concepts-private-link
+[docs-url-16]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-private-link
