@@ -394,11 +394,11 @@ az deployment group create \
 ```
 
 ## Resources
-- [Azure Blob Storage Documentation][docs-rel-1]
-- [Azure Role-Based Access Control (RBAC) Documentation][docs-rel-2]
+- [Azure Blob Storage Documentation][docs-url-1]
+- [Azure Role-Based Access Control (RBAC) Documentation][docs-url-2]
 
 
-[docs-rel-1]: /azure/storage/blobs/
+[docs-url-1]: /azure/storage/blobs/
 [docs-abs-1]: https://learn.microsoft.com/azure/storage/blobs/
-[docs-rel-2]: /azure/role-based-access-control/overview
+[docs-url-2]: /azure/role-based-access-control/overview
 [docs-abs-2]: https://learn.microsoft.com/azure/role-based-access-control/overview

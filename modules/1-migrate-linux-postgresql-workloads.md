@@ -18,13 +18,13 @@ The application and its associated data are provided for you in the GitHub repos
 
 As we consider this migration effort, you might wonder about the benefits of migrating this workload to the cloud. There are many, but some of the value propositions include:
 
-*Security and compliance.* When you bring compute and data workloads to the cloud, they benefit from increased security capabilities. Virtual Machines in Azure benefit from a vast array of security and compliance features, including firewalls, virtual networks, just-in-time virtual machine access, encryption, RBAC, and confidential computing. Azure Database for PostgreSQL supports many similar features as well, such as [encryption with customer-managed keys][docs-rel-1], [compliance certifications][docs-rel-2], and support for [Microsoft Defender for Cloud][docs-rel-3].  
+*Security and compliance.* When you bring compute and data workloads to the cloud, they benefit from increased security capabilities. Virtual Machines in Azure benefit from a vast array of security and compliance features, including firewalls, virtual networks, just-in-time virtual machine access, encryption, RBAC, and confidential computing. Azure Database for PostgreSQL supports many similar features as well, such as [encryption with customer-managed keys][docs-url-1], [compliance certifications][docs-url-2], and support for [Microsoft Defender for Cloud][docs-url-3].  
 
-*Secure connections between your Virtual Machines and Databases.* As we integrate these two services, it's critical that they can connect to each other in a secure manner that reduces the risk of data loss. [Microsoft Entra ID authentication][docs-rel-4] enables you to connect to your Azure Database for PostgreSQL without traditional passwords, but instead using Microsoft Entra ID identities for both your application workload (Managed Identity), users, and administrators, via their Microsoft Entra ID user accounts. This approach mitigates the risk of long-lived credentials being compromised and allowing bad actors to access your data. Microsoft Entra ID, Managed Identities, and fine-grained Role-Based Access Control (RBAC) can enable your application workload to access data and manage resources in Azure securely, following the principle of least privilege. 
+*Secure connections between your Virtual Machines and Databases.* As we integrate these two services, it's critical that they can connect to each other in a secure manner that reduces the risk of data loss. [Microsoft Entra ID authentication][docs-url-4] enables you to connect to your Azure Database for PostgreSQL without traditional passwords, but instead using Microsoft Entra ID identities for both your application workload (Managed Identity), users, and administrators, via their Microsoft Entra ID user accounts. This approach mitigates the risk of long-lived credentials being compromised and allowing bad actors to access your data. Microsoft Entra ID, Managed Identities, and fine-grained Role-Based Access Control (RBAC) can enable your application workload to access data and manage resources in Azure securely, following the principle of least privilege. 
 
-*Access to high-performance and cost-effective compute across multiple regions.* Whether you need cost-effective compute for test-dev or the most recent, highest performance, or largest compute types available in the cloud today, Azure has a broad selection of compute options for both [Virtual Machines][docs-rel-5] and [Azure Database for PostgreSQL][docs-rel-6], which can be scaled up and down as needed, and are available across [over 60 regions][7] in Azure. Compute can be scaled both vertically and horizontally, including via [database replicas][docs-rel-8] and [distributed options][docs-rel-9] such as Azure Cosmos DB for PostgreSQL, a managed service for PostgreSQL extended with the Citus open source superpower of distributed tables. This compute is paired with some of the [fastest cloud storage options][docs-rel-10] to tailor your compute and storage I/O requirements to your workload. 
+*Access to high-performance and cost-effective compute across multiple regions.* Whether you need cost-effective compute for test-dev or the most recent, highest performance, or largest compute types available in the cloud today, Azure has a broad selection of compute options for both [Virtual Machines][docs-url-5] and [Azure Database for PostgreSQL][docs-url-6], which can be scaled up and down as needed, and are available across [over 60 regions][7] in Azure. Compute can be scaled both vertically and horizontally, including via [database replicas][docs-url-8] and [distributed options][docs-url-9] such as Azure Cosmos DB for PostgreSQL, a managed service for PostgreSQL extended with the Citus open source superpower of distributed tables. This compute is paired with some of the [fastest cloud storage options][docs-url-10] to tailor your compute and storage I/O requirements to your workload. 
 
-*Cost management and cost-effectiveness.* You can optimize for cost management and cost-effectiveness on both the Linux and PostgreSQL sides. When compared with on-premises solutions, the cost can often be significantly more tailored and appropriate for your situation. You can right-size your compute in comparison to an on-premises solution. You can also easily manage your entire fleet to optimize for only the compute and storage you need, and pay only for what you use in a utility billing model. Utility billing enables customers to handle periods of high demand without having to pay the cost of over-provisioning and allows migration to faster and more efficient generations of compute as they become available. Customers can also take advantage of the Azure Hybrid Benefit to save on licensing costs for specific Linux distributions (learn more about the [Azure Hybrid Benefit for Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES) virtual machines][docs-rel-11]). Customers can also reduce costs—up to 72 percent compared to pay-as-you-go pricing—with one-year or three-year terms for virtual machines (VMs) and Azure Reserved Virtual Machine Instances (learn [How the Azure reservation discount is applied to virtual machines][docs-rel-12]). Azure pricing is transparent and predictable, and you can use the [Azure Pricing Calculator][13] to estimate your costs before you deploy.
+*Cost management and cost-effectiveness.* You can optimize for cost management and cost-effectiveness on both the Linux and PostgreSQL sides. When compared with on-premises solutions, the cost can often be significantly more tailored and appropriate for your situation. You can right-size your compute in comparison to an on-premises solution. You can also easily manage your entire fleet to optimize for only the compute and storage you need, and pay only for what you use in a utility billing model. Utility billing enables customers to handle periods of high demand without having to pay the cost of over-provisioning and allows migration to faster and more efficient generations of compute as they become available. Customers can also take advantage of the Azure Hybrid Benefit to save on licensing costs for specific Linux distributions (learn more about the [Azure Hybrid Benefit for Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES) virtual machines][docs-url-11]). Customers can also reduce costs—up to 72 percent compared to pay-as-you-go pricing—with one-year or three-year terms for virtual machines (VMs) and Azure Reserved Virtual Machine Instances (learn [How the Azure reservation discount is applied to virtual machines][docs-url-12]). Azure pricing is transparent and predictable, and you can use the [Azure Pricing Calculator][13] to estimate your costs before you deploy.
 
 *Day 2 operations.* Operations across the board become more efficient through automation, the ability to upgrade easily with potentially zero downtime, monitoring, security patching, backups, and disaster recovery. Additionally, you can manage your infrastructure end-to-end with industry-standard toolchains.
 
@@ -80,52 +80,52 @@ However, this often requires code changes in your application. We show how to us
 
 If you don't have an Azure account, you can create a [free account][16] today. You get credits that can be used to try out paid Azure services. Even after you use the credits, you can keep the account and use free Azure services.
 
-In order to run the commands in the following modules you need access to a bash shell. This can be on your local machine such as macOS, Linux, Windows Subsystem for Linux (WSL), Docker, a virtual machine such as Multipass, or in the cloud such as [Azure Cloud Shell][docs-rel-17], [GitHub Codespaces][18], or an Azure Virtual Machine.
+In order to run the commands in the following modules you need access to a bash shell. This can be on your local machine such as macOS, Linux, Windows Subsystem for Linux (WSL), Docker, a virtual machine such as Multipass, or in the cloud such as [Azure Cloud Shell][docs-url-17], [GitHub Codespaces][18], or an Azure Virtual Machine.
 
 
-To complete this module, you need the Azure CLI. You can install the Azure CLI on your local machine by following the instructions in the [Install the Azure CLI][docs-rel-19] article. You also need to install [Git][20].
+To complete this module, you need the Azure CLI. You can install the Azure CLI on your local machine by following the instructions in the [Install the Azure CLI][docs-url-19] article. You also need to install [Git][20].
 
 ## Resources
 - [Create a Free Azure account][16]
-- [How to Install the Azure CLI][docs-rel-19]
+- [How to Install the Azure CLI][docs-url-19]
 - [Azure Pricing Calculator][13]
-- [Azure Hybrid Benefit for Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES) virtual machines][docs-rel-11]
-- [How the Azure reservation discount is applied to virtual machines][docs-rel-12]
+- [Azure Hybrid Benefit for Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES) virtual machines][docs-url-11]
+- [How the Azure reservation discount is applied to virtual machines][docs-url-12]
 - [Azure-Samples/tailwind-traders-go][14]
 - [Azure-Samples/linux-postgres-migration][15]
-- [What is Azure Cloud Shell][docs-rel-17]
+- [What is Azure Cloud Shell][docs-url-17]
 - [GitHub Codespaces][18]
 
-[docs-rel-1]: /azure/postgresql/flexible-server/concepts-data-encryption
+[docs-url-1]: /azure/postgresql/flexible-server/concepts-data-encryption
 [docs-abs-1]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-data-encryption
-[docs-rel-2]: /azure/postgresql/flexible-server/concepts-compliance
+[docs-url-2]: /azure/postgresql/flexible-server/concepts-compliance
 [docs-abs-2]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-compliance
-[docs-rel-3]: /azure/postgresql/flexible-server/concepts-security#microsoft-defender-for-cloud-support
+[docs-url-3]: /azure/postgresql/flexible-server/concepts-security#microsoft-defender-for-cloud-support
 [docs-abs-3]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-security#microsoft-defender-for-cloud-support
-[docs-rel-4]: /azure/postgresql/flexible-server/concepts-azure-ad-authentication
+[docs-url-4]: /azure/postgresql/flexible-server/concepts-azure-ad-authentication
 [docs-abs-4]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-azure-ad-authentication
-[docs-rel-5]: /azure/virtual-machines/sizes/overview
+[docs-url-5]: /azure/virtual-machines/sizes/overview
 [docs-abs-5]: https://learn.microsoft.com/azure/virtual-machines/sizes/overview
-[docs-rel-6]: /azure/postgresql/flexible-server/concepts-compute
+[docs-url-6]: /azure/postgresql/flexible-server/concepts-compute
 [docs-abs-6]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-compute
 [7]: https://azure.microsoft.com/explore/global-infrastructure/products-by-region
-[docs-rel-8]: /azure/postgresql/flexible-server/concepts-read-replicas
+[docs-url-8]: /azure/postgresql/flexible-server/concepts-read-replicas
 [docs-abs-8]: https://learn.microsoft.com/azure/postgresql/flexible-server/concepts-read-replicas
-[docs-rel-9]: /azure/cosmos-db/postgresql/introduction
+[docs-url-9]: /azure/cosmos-db/postgresql/introduction
 [docs-abs-9]: https://learn.microsoft.com/azure/cosmos-db/postgresql/introduction
-[docs-rel-10]: /azure/virtual-machines/disks-types
+[docs-url-10]: /azure/virtual-machines/disks-types
 [docs-abs-10]: https://learn.microsoft.com/azure/virtual-machines/disks-types
-[docs-rel-11]: /azure/virtual-machines/linux/azure-hybrid-benefit-linux
+[docs-url-11]: /azure/virtual-machines/linux/azure-hybrid-benefit-linux
 [docs-abs-11]: https://learn.microsoft.com/azure/virtual-machines/linux/azure-hybrid-benefit-linux
-[docs-rel-12]: /azure/cost-management-billing/manage/understand-vm-reservation-charges
+[docs-url-12]: /azure/cost-management-billing/manage/understand-vm-reservation-charges
 [docs-abs-12]: https://learn.microsoft.com/azure/cost-management-billing/manage/understand-vm-reservation-charges
 [13]: https://azure.microsoft.com/pricing/calculator/
 [14]: https://github.com/Azure-Samples/tailwind-traders-go
 [15]: https://github.com/Azure-Samples/linux-postgres-migration
 [16]: https://azure.microsoft.com/free/
-[docs-rel-17]: /azure/cloud-shell/overview
+[docs-url-17]: /azure/cloud-shell/overview
 [docs-abs-17]: https://learn.microsoft.com/azure/cloud-shell/overview
 [18]: https://github.com/features/codespaces
-[docs-rel-19]: /cli/azure/install-azure-cli
+[docs-url-19]: /cli/azure/install-azure-cli
 [docs-abs-19]: https://learn.microsoft.com/cli/azure/install-azure-cli
 [20]: https://git-scm.com/
