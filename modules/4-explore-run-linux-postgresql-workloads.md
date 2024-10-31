@@ -399,6 +399,6 @@ az deployment group create \
 
 
 [docs-url-1]: /azure/storage/blobs/
-[docs-abs-1]: https://learn.microsoft.com/azure/storage/blobs/
+[docs-alt-1]: https://learn.microsoft.com/azure/storage/blobs/
 [docs-url-2]: /azure/role-based-access-control/overview
-[docs-abs-2]: https://learn.microsoft.com/azure/role-based-access-control/overview
+[docs-alt-2]: https://learn.microsoft.com/azure/role-based-access-control/overview

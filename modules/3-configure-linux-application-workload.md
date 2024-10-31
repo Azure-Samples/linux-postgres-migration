@@ -203,10 +203,10 @@ exit
 - [Azure built-in roles for Privileged][docs-url-2].
 
 [docs-url-1]: /azure/virtual-machines/linux/quick-create-cli
-[docs-abs-1]: https://learn.microsoft.com/azure/virtual-machines/linux/quick-create-cli
+[docs-alt-1]: https://learn.microsoft.com/azure/virtual-machines/linux/quick-create-cli
 [docs-url-2]: /azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
-[docs-abs-2]: https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
+[docs-alt-2]: https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator
 [docs-url-3]: /entra/identity/devices/howto-vm-sign-in-azure-ad-linux
-[docs-abs-3]: https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux
+[docs-alt-3]: https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-linux
 [docs-url-4]: /azure/postgresql/single-server/how-to-connect-with-managed-identity
-[docs-abs-4]: https://learn.microsoft.com/azure/postgresql/single-server/how-to-connect-with-managed-identity
+[docs-alt-4]: https://learn.microsoft.com/azure/postgresql/single-server/how-to-connect-with-managed-identity
