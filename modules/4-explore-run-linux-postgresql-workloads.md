@@ -330,7 +330,7 @@ Open the URL in a web browser. The following output appears:
   "sku": "drafting_tools",
   "name": "Bespoke Drafting Set",
   "price": 45,
-  "description": "Build your next bridge (or tunnel) using our Bespoke Drafting Set. Everyone drives across *regular* bridges everyday - but they'll rememeber yours - because it's _bespoke_.",
+  "description": "Build your next bridge (or tunnel) using our Bespoke Drafting Set. Everyone drives across *regular* bridges everyday - but they'll remember yours - because it's _bespoke_.",
   "image": "drafting_tools.jpg",
   "digital": false,
   "unit_description": "Tools and carrying case",
