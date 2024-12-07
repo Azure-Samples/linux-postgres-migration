@@ -193,6 +193,45 @@ module flexibleServer 'br/public:avm/res/db-for-postgre-sql/flexible-server:0.2.
   }
 }
 
+module privateEndpoint 'br/public:avm/res/network/private-endpoint:0.4.0' = {
+  name: 'privateEndpointDeployment'
+  params: {
+    name: 'private-endpoint-1'
+    location: location
+    customNetworkInterfaceName: 'private-endpoint-1-nic'
+    privateLinkServiceConnections: [
+      {
+        name: 'private-endpoint-1'
+        properties: {
+          privateLinkServiceId: flexibleServer.outputs.resourceId
+          groupIds: [
+            'postgresqlServer'
+          ]
+        }
+      }
+    ]
+    subnetResourceId: virtualNetwork.outputs.subnetResourceIds[0]
+    privateDnsZoneResourceIds: [
+        resourceId(resourceGroup().name, 'Microsoft.Network/privateDnsZones', 'privatelink.postgres.database.azure.com')
+    ]
+  }
+}
+
+resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' = {
+  name: 'privatelink.postgres.database.azure.com'
+  location: 'global'
+  resource virtualNetworkLink 'virtualNetworkLinks' = {
+    name: '${virtualNetwork.name}-link'
+    location: 'global'
+    properties: {
+      registrationEnabled: false
+      virtualNetwork: {
+        id: virtualNetwork.outputs.resourceId
+      }
+    }
+  }
+}
+
 module storageAccount 'br/public:avm/res/storage/storage-account:0.13.3' = if (deployStorage){
   name: 'storageAccountDeployment'
   params: {
@@ -221,3 +260,4 @@ module storageAccount 'br/public:avm/res/storage/storage-account:0.13.3' = if (d
     ]
   }
 }
+
