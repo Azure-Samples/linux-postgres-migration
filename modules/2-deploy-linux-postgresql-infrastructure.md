@@ -26,9 +26,9 @@ If you don't have an Azure subscription, create a [free account][6] before you b
 
 This module requires Azure CLI version 2.0.30 or later. Find the version by using the following command:
 
-    ```bash
-    az --version
-    ```
+```bash
+az --version
+```
 
 If you need to install or upgrade, see [Install the Azure CLI][docs-url-7].
 
@@ -36,19 +36,19 @@ If you need to install or upgrade, see [Install the Azure CLI][docs-url-7].
 
 To run commands in Azure by using the Azure CLI, you need to sign in first. Sign in by using the `az login` command:
 
-    ```bash
-    az login
-    ```
+```bash
+az login
+```
 
 ## Create a resource group
 
 A resource group is a container for related resources. All resources must be placed in a resource group. Use the [az group create][docs-url-8] command to create a resource group:
 
-    ```bash
-    az group create \
-        --name 240900-linux-postgres \
-        --location westus2
-    ```
+```bash
+az group create \
+    --name 240900-linux-postgres \
+    --location westus2
+```
 
 ## Deploy the Bicep template by using the Azure CLI
 
