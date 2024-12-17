@@ -5,7 +5,7 @@ In this unit, you will:
 - Configure a Linux application workload to connect to Azure Database for PostgreSQL by using a system-assigned managed identity.
 - Connect to the [Azure virtual machine by using the Azure CLI][docs-url-1].
 - Install the necessary tools.
-- Connect to the PostgreSQL server by using `psql`.
+- Connect to the PostgreSQL server by using **psql**.
 - Clone the repository that contains the sample application.
 - Run the application and confirm that it can connect to the PostgreSQL server by using the managed identity.
 
@@ -65,7 +65,7 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 az login --identity
 ```
 
-The following output appears:
+The output will be similar to the following:
 
 ```
 $ az login --identity
@@ -139,7 +139,7 @@ Run the application:
 go run main.go
 ```
 
-The output should be similar to:
+The output will be similar to the following:
 
 ```
 $ go run main.go
@@ -182,7 +182,7 @@ psql
 
 ## Quit psql and disconnect from the remote machine
 
-Quit `psql`:
+Quit **psql**:
 
 ```bash
 \q
