@@ -62,7 +62,7 @@ The Bicep file that you're using to deploy the compute resources for this unit i
     git clone https://github.com/Azure-Samples/linux-postgres-migration.git
     ```
 
-1. Go to the `linux-postgres-migration` directory:
+1. Go to the **linux-postgres-migration** directory:
 
     ```bash
     cd linux-postgres-migration
@@ -86,25 +86,25 @@ In the next sections, you'll configure and explore RBAC roles and network securi
 
 1. On the service menu, select **Resource groups**.
 
-1. On the **Resource groups** pane, select the resource group `240900-linux-postgres`.
+1. On the **Resource groups** pane, select the resource group **240900-linux-postgres**.
 
 In the upper-right part of the pane, the **Deployments** area shows the status of your Bicep template deployment. When deployment is successful, it shows **Succeeded**.
 
 ## View the virtual machine's network security group
 
-1. Select the virtual machine, `vm-1`.
+1. Select the virtual machine, **vm-1**.
 
 1. In the **Networking** section, select **Network settings**.
 
-The network settings show that the network security group (`240900-linux-postgres-nsg`) is attached to the same subnet of the virtual network (`240900-linux-postgres-vnet`) as the virtual machine.
+The network settings show that the network security group (**240900-linux-postgres-nsg**) is attached to the same subnet of the virtual network (**240900-linux-postgres-vnet**) as the virtual machine.
 
 The NSG is also visible inside the resource group. It contains a set of inbound and outbound security rules that control the traffic to and from the virtual machine.
 
 ## Return to the resource group
 
-At the top of the page, select the breadcrumb link to return to the resource group (`Home > Resource groups > 240900-linux-postgres`).
+At the top of the page, select the breadcrumb link to return to the resource group (**Home > Resource groups > 240900-linux-postgres**).
 
-Note that the `240900-linux-postgres-identity` user-assigned managed identity is listed in the resource group.
+Note that the **240900-linux-postgres-identity** user-assigned managed identity is listed in the resource group.
 
 You can learn more about system-assigned and user-assigned managed identities in [What are managed identities for Azure resources?][docs-url-11].
 
@@ -114,7 +114,7 @@ Add an inbound security rule to the NSG to allow SSH traffic from your current I
 
 In a production scenario, you would often use [just-in-time access][docs-url-12], [Azure Bastion][docs-url-13], or a VPN (such as Azure or a mesh VPN) to restrict access to your virtual machine.
 
-1. Select `240900-linux-postgres-nsg`.
+1. Select **240900-linux-postgres-nsg**.
 
 1. Select **Settings** > **Inbound security rules**.
 
@@ -128,13 +128,13 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 ## View the administrator for the Azure Database for PostgreSQL flexible server
 
-1. Find and select the Azure Database for PostgreSQL flexible server. It's named `postgres-xxxxx`, where `xxxxx` is a unique string that the Bicep template defined. The string remains consistent across deployments to your subscription and resource group.
+1. Find and select the Azure Database for PostgreSQL flexible server. It's named **postgres-xxxxx**, where **xxxxx** is a unique string that the Bicep template defined. The string remains consistent across deployments to your subscription and resource group.
 
 1. Select **Security** > **Authentication**.
 
-For this scenario, you're using **Microsoft Entra authentication only**. The `240900-linux-postgres-identity` user-assigned managed identity is listed under **Microsoft Entra Admins**.
+For this scenario, you're using **Microsoft Entra authentication only**. The **240900-linux-postgres-identity** user-assigned managed identity is listed under **Microsoft Entra Admins**.
 
-The `240900-linux-postgres-identity` managed identity is currently the only administrator for the server. You can optionally add your own user account as an administrator. But for this scenario, you use the managed identity that's already in place.
+The **240900-linux-postgres-identity** managed identity is currently the only administrator for the server. You can optionally add your own user account as an administrator. But for this scenario, you use the managed identity that's already in place.
 
 In an upcoming section, you use the identity from the virtual machine to administer the server via the Azure CLI. You also use that identity to provide access to the server for your application.
 
@@ -160,7 +160,7 @@ Here, the private endpoint has been created for you using Bicep.
 
 ## Review the role assignments for the virtual machine's system-assigned managed identity
 
-1. Return to the `240900-linux-postgres` resource group and select `vm-1`.
+1. Return to the **240900-linux-postgres** resource group and select **vm-1**.
 
 1. On the service menu, select **Security** > **Identity**.
 
@@ -168,7 +168,7 @@ Here, the private endpoint has been created for you using Bicep.
 
 1. Under **System assigned**, select **Azure role assignments**.
 
-   Here, you can confirm that the Reader role is assigned to the system-assigned managed identity. The role is scoped to the `240900-linux-postgres` resource group.
+   Here, you can confirm that the Reader role is assigned to the system-assigned managed identity. The role is scoped to the **240900-linux-postgres** resource group.
 
 The permissions in this identity allow you to use the Azure CLI within the VM to list resources in the resource group. With this ability, you don't have to hard-code specific resource details into your scripts.
 
