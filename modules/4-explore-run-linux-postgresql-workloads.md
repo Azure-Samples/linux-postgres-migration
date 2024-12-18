@@ -5,10 +5,10 @@ In this unit, you will:
 - Deploy an Azure Blob Storage account by using a Bicep template.
 - Create a Blob Storage container.
 - Migrate images to the Blob Storage account.
-- Upload `tailwind.sql` to the Blob Storage account.
+- Upload **tailwind.sql** to the Blob Storage account.
 - Connect to the Azure virtual machine by using the Azure CLI.
 - Download the file from the storage account.
-- Connect to the PostgreSQL server by using `psql` and import a SQL file.
+- Connect to the PostgreSQL server by using **psql** and import a SQL file.
 - Run the application interactively via the command line.
 - Confirm that the application runs correctly.
 
@@ -71,7 +71,7 @@ az storage blob upload-batch \
     --source app/data/images
 ```
 
-The following output appears:
+The output will be similar to the following:
 
 ```
 [
@@ -112,7 +112,7 @@ az ssh vm \
 
 ## Download the tailwind.sql file from the storage account
 
-Set the Bash variable `STORAGE_ACCOUNT_NAME` to the storage account name:
+Set the Bash variable **STORAGE_ACCOUNT_NAME** to the storage account name:
 
 ```bash
 STORAGE_ACCOUNT_NAME=$(az storage account list \
@@ -123,7 +123,7 @@ STORAGE_ACCOUNT_NAME=$(az storage account list \
 echo "STORAGE_ACCOUNT_NAME: $STORAGE_ACCOUNT_NAME"
 ```
 
-Download `tailwind.sql` to the Azure virtual machine by using the `az storage blob download` command:
+Download **tailwind.sql** to the Azure virtual machine by using the **az storage blob download** command:
 
 ```bash
 az storage blob download \
@@ -225,7 +225,7 @@ WHERE table_schema = 'public';
 
 ## Turn on expanded mode and select from the products table
 
-At the `postgres=>` prompt, turn on expanded mode:
+At the **postgres=>** prompt, turn on expanded mode:
 
 ```
 \x
@@ -345,7 +345,7 @@ Open the URL in a web browser. The following output appears:
 }
 ```
 
-Alternatively, you can make a request to the API endpoint by using `curl`:
+Alternatively, you can make a request to the API endpoint by using **curl**:
 
 ```bash
 curl "http://${IP_ADDRESS}:8080"
@@ -369,7 +369,7 @@ If these requests are successful, you successfully migrated the application work
 
 After you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs.
 
-You can delete the resource group `240900-linux-postgres` manually via the Azure portal, or run the following Azure CLI command:
+You can delete the resource group **240900-linux-postgres** manually via the Azure portal, or run the following Azure CLI command:
 
 ```bash
 az group delete \
@@ -378,7 +378,7 @@ az group delete \
     --no-wait
 ```
 
-Another option is to use the `empty.bicep` template to delete the resources that the `vm-postgres.bicep` file created. Running `az deployment group create` with `--mode Complete` removes any resources that the template doesn't define. Because `empty.json` has no resources, the command deletes every resource.
+Another option is to use the **empty.bicep** template to delete the resources that the **vm-postgres.bicep** file created. Running **az deployment group create** with **--mode Complete** removes any resources that the template doesn't define. Because **empty.json** has no resources, the command deletes every resource.
 
 ```bash
 az deployment group create \
@@ -387,7 +387,7 @@ az deployment group create \
     --mode Complete
 ```
 
-Deploying `empty.json` leaves the `240900-linux-postgres` resource group intact, so you can deploy the resources again by using a single command.
+Deploying **empty.json** leaves the **240900-linux-postgres** resource group intact, so you can deploy the resources again by using a single command.
 
 ## Resources
 
