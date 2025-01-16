@@ -30,6 +30,8 @@ This module requires Azure CLI version 2.0.30 or later. Find the version by usin
 az --version
 ```
 
+![az version](./media/az_cli_version.png)
+
 If you need to install or upgrade, see [How to install the Azure CLI][docs-url-7].
 
 ## Sign in to Azure by using the Azure CLI
@@ -52,6 +54,8 @@ az group create \
     --location westus2
 ```
 
+![az group create](./media/az_group_create.png)
+
 ## Deploy the Bicep template by using the Azure CLI
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure that you want to deploy to Azure. You then use that file throughout the development life cycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
@@ -63,6 +67,8 @@ The Bicep file that you're using to deploy the compute resources for this unit i
     ```bash
     git clone https://github.com/Azure-Samples/linux-postgres-migration.git
     ```
+
+    ![git clone](./media/git_clone.png)
 
 1. Go to the **linux-postgres-migration** directory:
 
@@ -82,6 +88,8 @@ The Bicep file that you're using to deploy the compute resources for this unit i
 
     At the completion of the deployment, JSON output confirms that the resources are deployed.
 
+    ![az deployment](./media/az_deployment.png)
+
 In the next sections, you'll configure and explore RBAC roles and network security rules on your deployed infrastructure by using the Azure portal. When you use the Azure portal, you can encode the roles and rules into the Bicep template. The Azure portal provides a visual interface that makes it easier to understand the relationships between resources and the permissions that are assigned to them.
 
 ## Open the resource group in the Azure portal
@@ -89,6 +97,8 @@ In the next sections, you'll configure and explore RBAC roles and network securi
 1. Open the [Azure portal][10].
 
 1. On the service menu, select **Resource groups**.
+
+    ![Service Menu Resource Groups](./media/service-menu-rg.png)
 
 1. On the **Resource groups** pane, select the resource group **240900-linux-postgres**.
 
@@ -207,7 +217,7 @@ Next, you'll explore and configure the deployed infrastructure.
 [docs-alt-7]: /cli/azure/install-azure-cli
 [docs-url-7]: https://learn.microsoft.com/cli/azure/install-azure-cli
 [docs-alt-8]: /cli/azure/group
-[docs-url-8]: https://learn.microsoft.com/cli/azure/group
+[docs-url-8]: https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create
 [9]: https://github.com/Azure-Samples/linux-postgres-migration/blob/main/deploy/vm-postgres.bicep
 [10]: https://portal.azure.com
 [docs-alt-11]: /entra/identity/managed-identities-azure-resources/overview#managed-identity-types
