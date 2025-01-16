@@ -199,7 +199,19 @@ In this unit, you will:
     cd tailwind-traders-go/app
     ```
 
-1. Get the public IP address of the virtual machine:
+1. Run the application interactively from the command line:
+
+    ```bash
+    go run main.go app:serve
+    ```
+
+    The following output appears:
+
+    ![Run app interactively](./media/run-app-interactively.png)
+
+1. Open a second terminal window or tab to run commands alongside the running application.
+
+1. In the new terminal, get the public IP address of the virtual machine:
 
     ```bash
     IP_ADDRESS=$(az network public-ip show \
@@ -216,17 +228,7 @@ In this unit, you will:
     ```
 
     This unit uses port 8080 for interactive dev/test purposes. In production, you would use port 443 and require a TLS certificate to help secure traffic to the endpoint.
-
-1. Run the application interactively from the command line:
-
-    ```bash
-    go run main.go app:serve
-    ```
-
-    The following output appears:
-
-    ![Run app interactively](./media/run-app-interactively.png)
-
+    
 1. Open the URL from the output two tasks prior in a web browser. 
 
     The following output appears:
@@ -241,7 +243,9 @@ In this unit, you will:
 
     This endpoint displays a random product from the database.
 
-1. Return to the terminal where you're running the application interactively. The output shows the requests to the API endpoint:
+1. Return to the terminal where you're running the application interactively.
+
+1. Note output shows the requests to the API endpoint:
 
     ```
     {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:58592","method":"GET","url":"/"}
@@ -249,7 +253,7 @@ In this unit, you will:
     {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/favicon.ico"}
     ```
 
-1. If these requests are successful, you successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
+1. If these requests were successful, you've successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
 
 ## Clean up Azure resources
 
