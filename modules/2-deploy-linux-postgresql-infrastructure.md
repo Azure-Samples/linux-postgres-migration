@@ -60,7 +60,9 @@ az group create \
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure that you want to deploy to Azure. You then use that file throughout the development life cycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
 
-The Bicep file that you're using to deploy the compute resources for this unit is in the [deploy/vm-postgres.bicep][9] GitHub repo. It contains a virtual machine, a virtual network, a managed identity, and a network security group (NSG) for the VM. You can read more about Bicep in [What is Bicep?][docs-url-1].
+The Bicep file that you're using to deploy the compute resources for this unit is in the [deploy/vm-postgres.bicep][9] GitHub repo. It contains a virtual machine, a virtual network, a managed identity, and a network security group (NSG) for the VM. 
+
+You can read more about Bicep in [What is Bicep?][docs-url-1].
 
 1. Clone the example repo to your local machine:
 
@@ -102,21 +104,25 @@ In the next sections, you'll configure and explore RBAC roles and network securi
 
 1. On the **Resource groups** pane, select the resource group **240900-linux-postgres**.
 
-In the upper-right part of the pane, the **Deployments** area shows the status of your Bicep template deployment. When deployment is successful, it shows **Succeeded**.
+    In the upper-right part of the pane, the **Deployments** area shows the status of your Bicep template deployment. When deployment is successful, it shows **Succeeded**.
+
+    ![Deployments succeeded](./media/deployments-succeeded.png)
 
 ## View the virtual machine's network security group
 
 1. Select the virtual machine, **vm-1**.
 
-1. In the **Networking** section, select **Network settings**.
+1. On the left menu, under the **Networking** section, select **Network settings**.
 
-The network settings show that the network security group (**240900-linux-postgres-nsg**) is attached to the same subnet of the virtual network (**240900-linux-postgres-vnet**) as the virtual machine.
+    The network settings show that the network security group (**240900-linux-postgres-nsg**) is attached to the same subnet of the virtual network (**240900-linux-postgres-vnet**) as the virtual machine.
 
 The NSG is also visible inside the resource group. It contains a set of inbound and outbound security rules that control the traffic to and from the virtual machine.
 
 ## Return to the resource group
 
-At the top of the page, select the breadcrumb link to return to the resource group (**Home > Resource groups > 240900-linux-postgres**).
+At the top-left of the page, select the **240900-linux-postgres** breadcrumb link to return to your resource group.
+
+![Resource group breadcrumb](./media/rg-breadcrumb.png)
 
 Note that the **240900-linux-postgres-identity** user-assigned managed identity is listed in the resource group.
 
@@ -130,15 +136,19 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 1. Select **240900-linux-postgres-nsg**.
 
-1. Select **Settings** > **Inbound security rules**.
+1. On the left menu, select **Settings**, then select **Inbound security rules**.
 
 1. Select **Add**.
+
+    ![Add inbound security rule](./media/add-inbound-rule.png)
 
 1. Under **Source**, select **My IP address**.
 
 1. Under **Service**, select **SSH**.
 
 1. Select **Add**.
+
+    ![Added My IP address](./media/added-my-ip.png)
 
 ## View the administrator for the Azure Database for PostgreSQL flexible server
 
@@ -154,7 +164,8 @@ In an upcoming section, you use the identity from the virtual machine to adminis
 
 In a production scenario, you would likely use a combination of managed identities, Microsoft Entra ID, and fine-grained RBAC to enable your application workload to access data and manage resources in Azure securely. You would follow the principle of least privilege.
 
-Read more about these scenarios in [Microsoft Entra authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-14] and [Use Microsoft Entra ID for authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-15].
+Read more about these scenarios:
+- [Microsoft Entra authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-14] - [Use Microsoft Entra ID for authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-15].
 
 ## Review the Azure Database for PostgreSQL Flexible Server firewall rules
 
@@ -168,7 +179,10 @@ In production, you would likely isolate this server from the public internet ent
 
 Unlike the virtual machine, you haven't associated Azure Database for PostgreSQL with any virtual network. You retain the option of accessing Azure Database for PostgreSQL over the public internet, which is useful for dev/test scenarios.
 
-To provide both security and flexibility, you enable access from the virtual machine via its virtual network by using a private endpoint. The private endpoint allows the virtual machine to access the database without exposing it to the public internet. Read more about private endpoints in [Azure Database for PostgreSQL - Flexible Server networking with Private Link][docs-url-16].
+To provide both security and flexibility, you enable access from the virtual machine via its virtual network by using a private endpoint. The private endpoint allows the virtual machine to access the database without exposing it to the public internet. 
+
+Read more about private endpoints:
+- [Azure Database for PostgreSQL - Flexible Server networking with Private Link][docs-url-16].
 
 Here, the private endpoint has been created for you using Bicep.
 
