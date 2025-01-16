@@ -199,16 +199,6 @@ In this unit, you will:
     cd tailwind-traders-go/app
     ```
 
-1. Run the application interactively from the command line:
-
-    ```bash
-    go run main.go app:serve
-    ```
-
-    The following output appears:
-
-    ![Run app interactively](./media/run-app-interactively.png)
-
 1. Get the public IP address of the virtual machine:
 
     ```bash
@@ -227,32 +217,21 @@ In this unit, you will:
 
     This unit uses port 8080 for interactive dev/test purposes. In production, you would use port 443 and require a TLS certificate to help secure traffic to the endpoint.
 
-1. Open the URL from the previous output in a web browser. 
+1. Run the application interactively from the command line:
+
+    ```bash
+    go run main.go app:serve
+    ```
 
     The following output appears:
 
-    ```
-    {
-    "id": 5,
-    "product_type_id": 1,
-    "supplier_id": 2,
-    "sku": "drafting_tools",
-    "name": "Bespoke Drafting Set",
-    "price": 45,
-    "description": "Build your next bridge (or tunnel) using our Bespoke Drafting Set. Everyone drives across *regular* bridges everyday - but they'll remember yours - because it's _bespoke_.",
-    "image": "drafting_tools.jpg",
-    "digital": false,
-    "unit_description": "Tools and carrying case",
-    "package_dimensions": "5x10x3",
-    "weight_in_pounds": "1.2",
-    "reorder_amount": 10,
-    "status": "in-stock",
-    "requires_shipping": true,
-    "warehouse_location": "Zone 1, Shelf 4, Slot 1",
-    "created_at": "...",
-    "updated_at": "..."
-    }
-    ```
+    ![Run app interactively](./media/run-app-interactively.png)
+
+1. Open the URL from the output two tasks prior in a web browser. 
+
+    The following output appears:
+
+    ![Browser output](./media/browser-output.png)
 
 1. Alternatively, you can make a request to the API endpoint by using **curl**:
 
