@@ -152,20 +152,23 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 ## View the administrator for the Azure Database for PostgreSQL flexible server
 
-1. Find and select the Azure Database for PostgreSQL flexible server. It's named **postgres-xxxxx**, where **xxxxx** is a unique string that the Bicep template defined. The string remains consistent across deployments to your subscription and resource group.
+1. At the top-left of the page, select the **240900-linux-postgres** breadcrumb link to return to your resource group.
 
-1. Select **Security** > **Authentication**.
+1. Find and select the Azure Database for PostgreSQL flexible server named **postgres-xxxxx**, where **xxxxx** is a unique string that the Bicep template defined. The string remains consistent across deployments to your subscription and resource group.
+
+1. On the left menu, select **Security**, then select **Authentication**.
 
 For this scenario, you're using **Microsoft Entra authentication only**. The **240900-linux-postgres-identity** user-assigned managed identity is listed under **Microsoft Entra Admins**.
 
-The **240900-linux-postgres-identity** managed identity is currently the only administrator for the server. You can optionally add your own user account as an administrator. But for this scenario, you use the managed identity that's already in place.
+The **240900-linux-postgres-identity** managed identity is currently the only administrator for the server. You can optionally add your own user account as an administrator. But for this scenario, you'll use the managed identity that's already in place.
 
 In an upcoming section, you use the identity from the virtual machine to administer the server via the Azure CLI. You also use that identity to provide access to the server for your application.
 
 In a production scenario, you would likely use a combination of managed identities, Microsoft Entra ID, and fine-grained RBAC to enable your application workload to access data and manage resources in Azure securely. You would follow the principle of least privilege.
 
 Read more about these scenarios:
-- [Microsoft Entra authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-14] - [Use Microsoft Entra ID for authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-15].
+- [Microsoft Entra authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-14]
+- [Use Microsoft Entra ID for authentication with Azure Database for PostgreSQL - Flexible Server][docs-url-15].
 
 ## Review the Azure Database for PostgreSQL Flexible Server firewall rules
 
