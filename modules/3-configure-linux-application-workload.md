@@ -11,16 +11,16 @@ In this unit, you will:
 
 ## Connect to the Azure virtual machine by using the Azure CLI
 
-1. Get the currently logged-in user and the VM ID
+1. Get the currently signed in user and the VM ID:
 
     ```bash
     USER_ID=$(az ad signed-in-user show --query id --output tsv)
     VM_ID=$(az vm show --resource-group 240900-linux-postgres --name vm-1 --query id --output tsv)
     ```
 
-    **Alert:** This may take a couple minutes to complete.
+    >**Alert:** This may take a couple minutes to complete.
 
-1. Assign the Virtual Machine Administrator Login role to the user for the VM
+1. Assign the **Virtual Machine Administrator Login** role to the user for the VM:
 
     ```bash
     az role assignment create \
@@ -31,7 +31,7 @@ In this unit, you will:
 
     You can read more about privileged roles for Azure VMs in [Azure built-in roles for Privileged][docs-url-2].
 
-1. Connect to the virtual machine
+1. Connect to the virtual machine:
 
     ```bash
     az ssh vm --resource-group 240900-linux-postgres --name vm-1
@@ -51,7 +51,7 @@ In this unit, you will:
     sudo apt-get install -y postgresql-client golang-go
     ```
 
-1. Confirm the version of psql
+1. Confirm the version of psql:
 
     ```bash
     psql --version

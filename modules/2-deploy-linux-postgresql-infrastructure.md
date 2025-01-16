@@ -86,7 +86,7 @@ You can read more about Bicep in [What is Bicep?][docs-url-1].
         --template-file deploy/vm-postgres.bicep
     ```
 
-    **Alert:** The deployment may take around 10 minutes to complete.
+    >**Alert:** The deployment may take around 10 minutes to complete.
 
     At the completion of the deployment, JSON output confirms that the resources are deployed.
 
