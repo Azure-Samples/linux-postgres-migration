@@ -152,7 +152,7 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 ## View the administrator for the Azure Database for PostgreSQL flexible server
 
-1. At the top-left of the page, select the **240900-linux-postgres** breadcrumb link to return to your resource group.
+1. Select the **240900-linux-postgres** breadcrumb link to return to your resource group.
 
 1. Find and select the Azure Database for PostgreSQL flexible server named **postgres-xxxxx**, where **xxxxx** is a unique string that the Bicep template defined. The string remains consistent across deployments to your subscription and resource group.
 
@@ -193,7 +193,9 @@ Here, the private endpoint has been created for you using Bicep.
 
 ## Review the role assignments for the virtual machine's system-assigned managed identity
 
-1. Return to the **240900-linux-postgres** resource group and select **vm-1**.
+1. Select the **240900-linux-postgres** breadcrumb link to return to your resource group.
+
+1. Select **vm-1**.
 
 1. On the service menu, select **Security**, then select **Identity**.
 
