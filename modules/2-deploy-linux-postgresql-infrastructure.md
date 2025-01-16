@@ -30,15 +30,17 @@ This module requires Azure CLI version 2.0.30 or later. Find the version by usin
 az --version
 ```
 
-If you need to install or upgrade, see [Install the Azure CLI][docs-url-7].
+If you need to install or upgrade, see [How to install the Azure CLI][docs-url-7].
 
 ## Sign in to Azure by using the Azure CLI
 
-To run commands in Azure by using the Azure CLI, you need to sign in first. Sign in by using the `az login` command:
+1. To run commands in Azure by using the Azure CLI, you need to sign in first. Sign in by using the `az login` command:
 
-```bash
-az login
-```
+    ```bash
+    az login
+    ```
+
+1. If prompted, enter the number for your Subscription and Tenant.
 
 ## Create a resource group
 
@@ -76,7 +78,9 @@ The Bicep file that you're using to deploy the compute resources for this unit i
         --template-file deploy/vm-postgres.bicep
     ```
 
-At the completion of the deployment, JSON output confirms that the resources are deployed.
+    > **Alert:** The deployment may take around 10 minutes to complete.
+
+    At the completion of the deployment, JSON output confirms that the resources are deployed.
 
 In the next sections, you'll configure and explore RBAC roles and network security rules on your deployed infrastructure by using the Azure portal. When you use the Azure portal, you can encode the roles and rules into the Bicep template. The Azure portal provides a visual interface that makes it easier to understand the relationships between resources and the permissions that are assigned to them.
 
