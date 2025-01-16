@@ -12,382 +12,379 @@ In this unit, you will:
 - Run the application interactively via the command line.
 - Confirm that the application runs correctly.
 
-## Deploy a storage account by using deploy/vm-postgres.bicep
 
-Run the following command on your local machine:
+## Deploy and setup the Azure Blob Storage account
 
-```bash
-az deployment group create \
-    --resource-group 240900-linux-postgres \
-    --template-file deploy/vm-postgres.bicep \
-    --parameters \
-        deployVm=false \
-        deployPostgres=false \
-        deployStorage=true
-```
+1. Deploy a storage account by using **deploy/vm-postgres.bicep**:
 
-## Add the current user to the Storage Blob Data Owner role
+    ```bash
+    az deployment group create \
+        --resource-group 240900-linux-postgres \
+        --template-file deploy/vm-postgres.bicep \
+        --parameters \
+            deployVm=false \
+            deployPostgres=false \
+            deployStorage=true
+    ```
 
-```bash
-STORAGE_ACCOUNT_ID=$(az storage account list \
-    --resource-group 240900-linux-postgres \
-    --query '[0].id' \
-    -o tsv)
+1. Add the current user to the **Storage Blob Data Owner** role:
 
-USER_ID=$(az ad signed-in-user show \
-    --query id \
-    -o tsv)
+    ```bash
+    STORAGE_ACCOUNT_ID=$(az storage account list \
+        --resource-group 240900-linux-postgres \
+        --query '[0].id' \
+        -o tsv)
 
-az role assignment create \
-    --role "Storage Blob Data Owner" \
-    --assignee $USER_ID \
-    --scope $STORAGE_ACCOUNT_ID
-```
+    USER_ID=$(az ad signed-in-user show \
+        --query id \
+        -o tsv)
 
-## Create a container called container1 in the storage account
+    az role assignment create \
+        --role "Storage Blob Data Owner" \
+        --assignee $USER_ID \
+        --scope $STORAGE_ACCOUNT_ID
+    ```
 
-```bash
-STORAGE_ACCOUNT_NAME=$(az storage account list \
-    --resource-group 240900-linux-postgres \
-    --query '[0].name' \
-    -o tsv)
+1. Create a container called **container1** in the storage account:
 
-echo "STORAGE_ACCOUNT_NAME: $STORAGE_ACCOUNT_NAME"
+    ```bash
+    STORAGE_ACCOUNT_NAME=$(az storage account list \
+        --resource-group 240900-linux-postgres \
+        --query '[0].name' \
+        -o tsv)
 
-az storage container create \
-    --account-name $STORAGE_ACCOUNT_NAME \
-    --auth-mode login \
-    --name container1
-```
+    echo "STORAGE_ACCOUNT_NAME: $STORAGE_ACCOUNT_NAME"
 
-## Migrate images to the storage account into a subfolder
+    az storage container create \
+        --account-name $STORAGE_ACCOUNT_NAME \
+        --auth-mode login \
+        --name container1
+    ```
 
-```bash
-az storage blob upload-batch \
-    --account-name $STORAGE_ACCOUNT_NAME \
-    --auth-mode login \
-    --overwrite \
-    --destination container1/images \
-    --source app/data/images
-```
+1. Migrate images to the storage account into a subfolder:
 
-The output will be similar to the following:
+    ```bash
+    az storage blob upload-batch \
+        --account-name $STORAGE_ACCOUNT_NAME \
+        --auth-mode login \
+        --overwrite \
+        --destination container1/images \
+        --source app/data/images
+    ```
 
-```
-[
-  {
-    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
-    "Last Modified": "...",
-    "Type": "image/jpeg",
-    "eTag": "\"0x8DCE0CA938AF41B\""
-  },
-  {
-    "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
-    "Last Modified": "...",
-    "Type": "image/jpeg",
-    "eTag": "\"0x8DCE0CA939DF18B\""
-  },
-  ...
-]
-```
+    The output will be similar to the following:
 
-## Upload app/data/postgres/tailwind.sql to the storage account
+    ```
+    [
+    {
+        "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
+        "Last Modified": "...",
+        "Type": "image/jpeg",
+        "eTag": "\"0x8DCE0CA938AF41B\""
+    },
+    {
+        "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
+        "Last Modified": "...",
+        "Type": "image/jpeg",
+        "eTag": "\"0x8DCE0CA939DF18B\""
+    },
+    ...
+    ]
+    ```
 
-```bash
-az storage blob upload \
-    --account-name $STORAGE_ACCOUNT_NAME \
-    --auth-mode login \
-    --container-name container1 \
-    --file app/data/postgres/tailwind.sql \
-    --name tailwind.sql
-```
+1. Upload app/data/postgres/tailwind.sql to the storage account:
 
-## Connect to the Azure virtual machine by using the az ssh command
+    ```bash
+    az storage blob upload \
+        --account-name $STORAGE_ACCOUNT_NAME \
+        --auth-mode login \
+        --container-name container1 \
+        --file app/data/postgres/tailwind.sql \
+        --name tailwind.sql
+    ```
 
-```bash
-az ssh vm \
-    --resource-group 240900-linux-postgres \
-    --name vm-1
-```
+## Download and import a SQL file using psql
 
-## Download the tailwind.sql file from the storage account
+1. Connect to the Azure virtual machine by using the az ssh command:
 
-Set the Bash variable **STORAGE_ACCOUNT_NAME** to the storage account name:
+    ```bash
+    az ssh vm \
+        --resource-group 240900-linux-postgres \
+        --name vm-1
+    ```
 
-```bash
-STORAGE_ACCOUNT_NAME=$(az storage account list \
-    --resource-group 240900-linux-postgres \
-    --query '[0].name' \
-    -o tsv)
+1. Download the **tailwind.sql** file from the storage account by setting the Bash variable **STORAGE_ACCOUNT_NAME** to the storage account name:
 
-echo "STORAGE_ACCOUNT_NAME: $STORAGE_ACCOUNT_NAME"
-```
+    ```bash
+    STORAGE_ACCOUNT_NAME=$(az storage account list \
+        --resource-group 240900-linux-postgres \
+        --query '[0].name' \
+        -o tsv)
 
-Download **tailwind.sql** to the Azure virtual machine by using the **az storage blob download** command:
+    echo "STORAGE_ACCOUNT_NAME: $STORAGE_ACCOUNT_NAME"
+    ```
 
-```bash
-az storage blob download \
-    --account-name $STORAGE_ACCOUNT_NAME \
-    --auth-mode login \
-    --container-name container1 \
-    --file tailwind.sql \
-    --name tailwind.sql
-```
+1. Download **tailwind.sql** to the Azure virtual machine by using the **az storage blob download** command:
 
-## Set the environment variables for psql on the remote machine
+    ```bash
+    az storage blob download \
+        --account-name $STORAGE_ACCOUNT_NAME \
+        --auth-mode login \
+        --container-name container1 \
+        --file tailwind.sql \
+        --name tailwind.sql
+    ```
 
-```bash
-MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
-export AZURE_CLIENT_ID=$(az identity show --resource-group 240900-linux-postgres --name $MANAGED_IDENTITY_NAME --query "clientId" -o tsv)
-PG_NAME=$(az postgres flexible-server list --resource-group 240900-linux-postgres --query "[0].name" -o tsv)
+1. Set the environment variables for psql on the remote machine:
 
-# Set psql environment variables
-export PGHOST="${PG_NAME}.privatelink.postgres.database.azure.com"
-export PGPASSWORD=$(curl -s "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fossrdbms-aad.database.windows.net&client_id=${AZURE_CLIENT_ID}" -H Metadata:true | jq -r .access_token)
-export PGUSER=$MANAGED_IDENTITY_NAME
-export PGDATABASE=postgres
-```
+    ```bash
+    MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
+    export AZURE_CLIENT_ID=$(az identity show --resource-group 240900-linux-postgres --name $MANAGED_IDENTITY_NAME --query "clientId" -o tsv)
+    PG_NAME=$(az postgres flexible-server list --resource-group 240900-linux-postgres --query "[0].name" -o tsv)
 
-## Import tailwind.sql by using psql
+    # Set psql environment variables
+    export PGHOST="${PG_NAME}.privatelink.postgres.database.azure.com"
+    export PGPASSWORD=$(curl -s "http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fossrdbms-aad.database.windows.net&client_id=${AZURE_CLIENT_ID}" -H Metadata:true | jq -r .access_token)
+    export PGUSER=$MANAGED_IDENTITY_NAME
+    export PGDATABASE=postgres
+    ```
 
-```bash
-psql -f tailwind.sql
-```
+1. Import tailwind.sql by using psql:
 
-## Connect to the Postgres server to confirm that the import was successful
+    ```bash
+    psql -f tailwind.sql
+    ```
 
-```bash
-psql
-```
+## Connect to the Postgres server to confirm the import was successful
 
-## List the tables
+1. Connect to the Postgres server:
 
-```bash
-\dt
-```
+    ```bash
+    psql
+    ```
 
-The following output appears:
+1. List the tables:
 
-```
-postgres=> \dt
-                           List of relations
- Schema |         Name         | Type  |             Owner              
---------+----------------------+-------+--------------------------------
- public | cart_items           | table | 240900-linux-postgres-identity
- public | checkouts            | table | 240900-linux-postgres-identity
- public | collections          | table | 240900-linux-postgres-identity
- public | collections_products | table | 240900-linux-postgres-identity
- public | customers            | table | 240900-linux-postgres-identity
- public | delivery_methods     | table | 240900-linux-postgres-identity
- public | product_types        | table | 240900-linux-postgres-identity
- public | products             | table | 240900-linux-postgres-identity
- public | shipment_items       | table | 240900-linux-postgres-identity
- public | shipments            | table | 240900-linux-postgres-identity
- public | store_inventory      | table | 240900-linux-postgres-identity
- public | stores               | table | 240900-linux-postgres-identity
- public | suppliers            | table | 240900-linux-postgres-identity
- public | supply_orders        | table | 240900-linux-postgres-identity
-(14 rows)
-```
+    ```bash
+    \dt
+    ```
 
-## Run a SQL query that lists the tables
+    The following output appears:
 
-```
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public';
-```
+    ```
+    postgres=> \dt
+                            List of relations
+    Schema |         Name         | Type  |             Owner              
+    --------+----------------------+-------+--------------------------------
+    public | cart_items           | table | 240900-linux-postgres-identity
+    public | checkouts            | table | 240900-linux-postgres-identity
+    public | collections          | table | 240900-linux-postgres-identity
+    public | collections_products | table | 240900-linux-postgres-identity
+    public | customers            | table | 240900-linux-postgres-identity
+    public | delivery_methods     | table | 240900-linux-postgres-identity
+    public | product_types        | table | 240900-linux-postgres-identity
+    public | products             | table | 240900-linux-postgres-identity
+    public | shipment_items       | table | 240900-linux-postgres-identity
+    public | shipments            | table | 240900-linux-postgres-identity
+    public | store_inventory      | table | 240900-linux-postgres-identity
+    public | stores               | table | 240900-linux-postgres-identity
+    public | suppliers            | table | 240900-linux-postgres-identity
+    public | supply_orders        | table | 240900-linux-postgres-identity
+    (14 rows)
+    ```
 
-The following output appears:
+1. Run a SQL query that lists the tables:
 
-```
-postgres=> SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public';
-      table_name      
-----------------------
- collections
- stores
- customers
- cart_items
- product_types
- products
- suppliers
- collections_products
- checkouts
- shipments
- delivery_methods
- shipment_items
- store_inventory
- supply_orders
-(14 rows)
-```
+    ```
+    SELECT table_name
+    FROM information_schema.tables
+    WHERE table_schema = 'public';
+    ```
 
-## Turn on expanded mode and select from the products table
+    The following output appears:
 
-At the **postgres=>** prompt, turn on expanded mode:
+    ```
+    postgres=> SELECT table_name
+    FROM information_schema.tables
+    WHERE table_schema = 'public';
+        table_name      
+    ----------------------
+    collections
+    stores
+    customers
+    cart_items
+    product_types
+    products
+    suppliers
+    collections_products
+    checkouts
+    shipments
+    delivery_methods
+    shipment_items
+    store_inventory
+    supply_orders
+    (14 rows)
+    ```
 
-```
-\x
-```
+1. Turn on expanded mode at the **postgres=>** prompt:
 
-Select from the products table:
+    ```
+    \x
+    ```
 
-```
-select * from products;
-```
+1. In expanded mode, select from the products table:
 
-The following prompt appears:
+    ```
+    select * from products;
+    ```
 
-```
-postgres=> \x
-Expanded display is on.
-postgres=> select * from products;
-```
+    The following prompt appears:
 
-A listing of products appears:
+    ```
+    postgres=> \x
+    Expanded display is on.
+    postgres=> select * from products;
+    ```
 
-```
-id                 | 1
-product_type_id    | 1
-supplier_id        | 2
-sku                | brush_cleaner
-name               | Meltdown Brush Cleaner
-price              | 12.99
-description        | We all leave our brushes sitting around, full of old dry paint. Don't worry! The Meltdown Brush Cleaner can remove just about anything.
-image              | brush_cleaner.jpg
-digital            | f
-unit_description   | 1 - 10oz Jar
-package_dimensions | 4x8x2
-weight_in_pounds   | 3.2
-reorder_amount     | 10
-status             | in-stock
-requires_shipping  | t
-warehouse_location | Zone 1, Shelf 12, Slot 6
-created_at         | ...
-updated_at         | ...
-...
-```
+    A listing of products appears:
 
-Select the Spacebar to page through the results. Enter `q` to exit the pager.
+    ```
+    id                 | 1
+    product_type_id    | 1
+    supplier_id        | 2
+    sku                | brush_cleaner
+    name               | Meltdown Brush Cleaner
+    price              | 12.99
+    description        | We all leave our brushes sitting around, full of old dry paint. Don't worry! The Meltdown Brush Cleaner can remove just about anything.
+    image              | brush_cleaner.jpg
+    digital            | f
+    unit_description   | 1 - 10oz Jar
+    package_dimensions | 4x8x2
+    weight_in_pounds   | 3.2
+    reorder_amount     | 10
+    status             | in-stock
+    requires_shipping  | t
+    warehouse_location | Zone 1, Shelf 12, Slot 6
+    created_at         | ...
+    updated_at         | ...
+    ...
+    ```
 
-## Exit psql
+1. You can use **Spacebar** to page through the results. Enter `q` to exit the pager.
 
-```
-\q
-```
+1. Exit psql:
+
+    ```
+    \q
+    ```
 
 ## Run the application interactively via the command line
 
-On the remote machine, change to the directory that contains the application:
+1. On the remote machine, change to the directory that contains the application:
 
-```bash
-cd tailwind-traders-go/app
-```
+    ```bash
+    cd tailwind-traders-go/app
+    ```
 
-Run the application interactively from the command line:
+1. Run the application interactively from the command line:
 
-```bash
-go run main.go app:serve
-```
+    ```bash
+    go run main.go app:serve
+    ```
 
-The following output appears:
+    The following output appears:
 
-```
-$ go run main.go app:serve
-Listening on :8080
-```
-
-## Find the public IP address of the VM
-
-Get the public IP address of the virtual machine:
-
-```bash
-IP_ADDRESS=$(az network public-ip show \
-    --resource-group 240900-linux-postgres \
-    --name vm-1-ip \
-    --query ipAddress \
-    --out tsv)
-```
-
-Output the URL to the terminal:
-
-```bash
-echo "Your URL is: http://${IP_ADDRESS}:8080"
-```
-
-This unit uses port 8080 for interactive dev/test purposes. In production, you would use port 443 and require a TLS certificate to help secure traffic to the endpoint.
+    ```
+    $ go run main.go app:serve
+    Listening on :8080
+    ```
 
 ## Browse the public API endpoint
 
-Open the URL in a web browser. The following output appears:
+1. Get the public IP address of the virtual machine:
 
-```
-{
-  "id": 5,
-  "product_type_id": 1,
-  "supplier_id": 2,
-  "sku": "drafting_tools",
-  "name": "Bespoke Drafting Set",
-  "price": 45,
-  "description": "Build your next bridge (or tunnel) using our Bespoke Drafting Set. Everyone drives across *regular* bridges everyday - but they'll remember yours - because it's _bespoke_.",
-  "image": "drafting_tools.jpg",
-  "digital": false,
-  "unit_description": "Tools and carrying case",
-  "package_dimensions": "5x10x3",
-  "weight_in_pounds": "1.2",
-  "reorder_amount": 10,
-  "status": "in-stock",
-  "requires_shipping": true,
-  "warehouse_location": "Zone 1, Shelf 4, Slot 1",
-  "created_at": "...",
-  "updated_at": "..."
-}
-```
+    ```bash
+    IP_ADDRESS=$(az network public-ip show \
+        --resource-group 240900-linux-postgres \
+        --name vm-1-ip \
+        --query ipAddress \
+        --out tsv)
+    ```
 
-Alternatively, you can make a request to the API endpoint by using **curl**:
+    Output the URL to the terminal:
 
-```bash
-curl "http://${IP_ADDRESS}:8080"
-```
+    ```bash
+    echo "Your URL is: http://${IP_ADDRESS}:8080"
+    ```
 
-This endpoint displays a random product from the database.
+    This unit uses port 8080 for interactive dev/test purposes. In production, you would use port 443 and require a TLS certificate to help secure traffic to the endpoint.
 
-## View requests logged to the terminal
+1. Open the URL from the previous output in a web browser. The following output appears:
 
-Return to the terminal where you're running the application interactively. The output shows the request to the API endpoint:
+    ```
+    {
+    "id": 5,
+    "product_type_id": 1,
+    "supplier_id": 2,
+    "sku": "drafting_tools",
+    "name": "Bespoke Drafting Set",
+    "price": 45,
+    "description": "Build your next bridge (or tunnel) using our Bespoke Drafting Set. Everyone drives across *regular* bridges everyday - but they'll remember yours - because it's _bespoke_.",
+    "image": "drafting_tools.jpg",
+    "digital": false,
+    "unit_description": "Tools and carrying case",
+    "package_dimensions": "5x10x3",
+    "weight_in_pounds": "1.2",
+    "reorder_amount": 10,
+    "status": "in-stock",
+    "requires_shipping": true,
+    "warehouse_location": "Zone 1, Shelf 4, Slot 1",
+    "created_at": "...",
+    "updated_at": "..."
+    }
+    ```
 
-```
-{"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:58592","method":"GET","url":"/"}
-{"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/"}
-{"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/favicon.ico"}
-```
+1. Alternatively, you can make a request to the API endpoint by using **curl**:
 
-If these requests are successful, you successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
+    ```bash
+    curl "http://${IP_ADDRESS}:8080"
+    ```
+
+    This endpoint displays a random product from the database.
+
+1. Return to the terminal where you're running the application interactively. The output shows the requests to the API endpoint:
+
+    ```
+    {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:58592","method":"GET","url":"/"}
+    {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/"}
+    {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/favicon.ico"}
+    ```
+
+1. If these requests are successful, you successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
 
 ## Clean up Azure resources
 
 After you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs.
 
-You can delete the resource group **240900-linux-postgres** manually via the Azure portal, or run the following Azure CLI command:
+1. You can delete the resource group **240900-linux-postgres** manually via the Azure portal, or run the following Azure CLI command:
 
-```bash
-az group delete \
-    --name 240900-linux-postgres \
-    --yes \
-    --no-wait
-```
+    ```bash
+    az group delete \
+        --name 240900-linux-postgres \
+        --yes \
+        --no-wait
+    ```
 
-Another option is to use the **empty.bicep** template to delete the resources that the **vm-postgres.bicep** file created. Running **az deployment group create** with **--mode Complete** removes any resources that the template doesn't define. Because **empty.json** has no resources, the command deletes every resource.
+1. Another option is to use the **empty.bicep** template to delete the resources that the **vm-postgres.bicep** file created. Running **az deployment group create** with **--mode Complete** removes any resources that the template doesn't define. Because **empty.json** has no resources, the command deletes every resource:
 
-```bash
-az deployment group create \
-    --resource-group 240900-linux-postgres \
-    --template-file deploy/empty.bicep \
-    --mode Complete
-```
+    ```bash
+    az deployment group create \
+        --resource-group 240900-linux-postgres \
+        --template-file deploy/empty.bicep \
+        --mode Complete
+    ```
 
-Deploying **empty.json** leaves the **240900-linux-postgres** resource group intact, so you can deploy the resources again by using a single command.
+    >**Note:** Deploying **empty.json** leaves the **240900-linux-postgres** resource group intact, so you can deploy the resources again by using a single command.
 
 ## Resources
 
