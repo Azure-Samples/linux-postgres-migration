@@ -112,7 +112,7 @@ In the next sections, you'll configure and explore RBAC roles and network securi
 
 1. Select the virtual machine, **vm-1**.
 
-1. On the left menu, under the **Networking** section, select **Network settings**.
+1. On the service menu, under the **Networking** section, select **Network settings**.
 
     The network settings show that the network security group (**240900-linux-postgres-nsg**) is attached to the same subnet of the virtual network (**240900-linux-postgres-vnet**) as the virtual machine.
 
@@ -136,7 +136,7 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 1. Select **240900-linux-postgres-nsg**.
 
-1. On the left menu, select **Settings**, then select **Inbound security rules**.
+1. On the service menu, select **Settings**, then select **Inbound security rules**.
 
 1. Select **Add**.
 
@@ -156,7 +156,7 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 1. Find and select the Azure Database for PostgreSQL flexible server named **postgres-xxxxx**, where **xxxxx** is a unique string that the Bicep template defined. The string remains consistent across deployments to your subscription and resource group.
 
-1. On the left menu, select **Security**, then select **Authentication**.
+1. On the service menu, select **Security**, then select **Authentication**.
 
 For this scenario, you're using **Microsoft Entra authentication only**. The **240900-linux-postgres-identity** user-assigned managed identity is listed under **Microsoft Entra Admins**.
 
@@ -174,7 +174,7 @@ Read more about these scenarios:
 
 ## Review the Azure Database for PostgreSQL Flexible Server firewall rules
 
-On the left menu, select **Settings**, then select **Networking**.
+On the service menu, select **Settings**, then select **Networking**.
 
 If you were administering the server from your local machine, rather than the virtual machine, you would need to add your IP address to the firewall rules.
 
@@ -195,13 +195,15 @@ Here, the private endpoint has been created for you using Bicep.
 
 1. Return to the **240900-linux-postgres** resource group and select **vm-1**.
 
-1. On the service menu, select **Security** > **Identity**.
+1. On the service menu, select **Security**, then select **Identity**.
 
-   Here, you can confirm that the system-assigned managed identity is attached to the virtual machine.
+    Here, you can confirm that the system-assigned managed identity is attached to the virtual machine.
 
-1. Under **System assigned**, select **Azure role assignments**.
+1. On the **System assigned** tab, under **Permissions**, select **Azure role assignments**.
 
-   Here, you can confirm that the Reader role is assigned to the system-assigned managed identity. The role is scoped to the **240900-linux-postgres** resource group.
+    ![Managed identity role assignments](./media/managed-id-role-assignments.png)
+
+1. Confirm that the **Reader** role is assigned to the system-assigned managed identity. The role is scoped to the **240900-linux-postgres** resource group.
 
 The permissions in this identity allow you to use the Azure CLI within the VM to list resources in the resource group. With this ability, you don't have to hard-code specific resource details into your scripts.
 
