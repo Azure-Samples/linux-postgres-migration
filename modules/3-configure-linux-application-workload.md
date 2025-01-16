@@ -63,7 +63,7 @@ In this unit, you will:
     psql --version
     ```
 
-1. Install the Azure CLI on the virtual machine
+1. Install the Azure CLI on the virtual machine:
 
     ```bash
     curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash

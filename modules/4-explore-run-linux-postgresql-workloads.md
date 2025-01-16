@@ -229,9 +229,9 @@ In this unit, you will:
 
     This unit uses port 8080 for interactive dev/test purposes. In production, you would use port 443 and require a TLS certificate to help secure traffic to the endpoint.
     
-1. Open the URL from the output two tasks prior in a web browser. 
+1. Open the URL in a web browser. 
 
-    The following output appears:
+    Output similar to the following appears:
 
     ![Browser output](./media/browser-output.png)
 
@@ -245,35 +245,35 @@ In this unit, you will:
 
 1. Return to the terminal where you're running the application interactively.
 
-1. Note output shows the requests to the API endpoint:
+1. Note the output shows the requests to the API endpoint:
 
     ![App endpoint requests](./media/app-endpoint-requests.png)
 
-If these requests were successful, you've successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
+    If these requests were successful, you've successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
 
 ## Clean up Azure resources
 
 After you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs.
 
-1. You can delete the resource group **240900-linux-postgres** manually via the Azure portal. In your second terminal, run the following Azure CLI command:
+You can delete the resource group **240900-linux-postgres** manually via the Azure portal. In your second terminal, run the following Azure CLI command:
 
-    ```bash
-    az group delete \
-        --name 240900-linux-postgres \
-        --yes \
-        --no-wait
-    ```
+```bash
+az group delete \
+    --name 240900-linux-postgres \
+    --yes \
+    --no-wait
+```
 
-1. Another option is to use the **empty.bicep** template to delete the resources that the **vm-postgres.bicep** file created. Running **az deployment group create** with **--mode Complete** removes any resources that the template doesn't define. Because **empty.json** has no resources, the command deletes every resource:
+Alternatively, you can use the **empty.bicep** template to delete the resources that the **vm-postgres.bicep** file created. Running **az deployment group create** with **--mode Complete** removes any resources that the template doesn't define. Because **empty.json** has no resources, the command deletes every resource:
 
-    ```bash
-    az deployment group create \
-        --resource-group 240900-linux-postgres \
-        --template-file deploy/empty.bicep \
-        --mode Complete
-    ```
+```bash
+az deployment group create \
+    --resource-group 240900-linux-postgres \
+    --template-file deploy/empty.bicep \
+    --mode Complete
+```
 
-    >**Note:** Deploying **empty.json** leaves the **240900-linux-postgres** resource group intact, so you can deploy the resources again by using a single command.
+>**Note:** Deploying **empty.json** leaves the **240900-linux-postgres** resource group intact, so you can deploy the resources again by using a single command.
 
 ## Resources
 
