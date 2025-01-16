@@ -160,6 +160,8 @@ In a production scenario, you would often use [just-in-time access][docs-url-12]
 
 For this scenario, you're using **Microsoft Entra authentication only**. The **240900-linux-postgres-identity** user-assigned managed identity is listed under **Microsoft Entra Admins**.
 
+![Managed identity postgresql](./media/postgresql-managed-identity.png)
+
 The **240900-linux-postgres-identity** managed identity is currently the only administrator for the server. You can optionally add your own user account as an administrator. But for this scenario, you'll use the managed identity that's already in place.
 
 In an upcoming section, you use the identity from the virtual machine to administer the server via the Azure CLI. You also use that identity to provide access to the server for your application.
@@ -172,7 +174,7 @@ Read more about these scenarios:
 
 ## Review the Azure Database for PostgreSQL Flexible Server firewall rules
 
-Select **Settings** > **Networking**.
+On the left menu, select **Settings**, then select **Networking**.
 
 If you were administering the server from your local machine, rather than the virtual machine, you would need to add your IP address to the firewall rules.
 
