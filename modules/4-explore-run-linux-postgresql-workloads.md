@@ -247,19 +247,15 @@ In this unit, you will:
 
 1. Note output shows the requests to the API endpoint:
 
-    ```
-    {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:58592","method":"GET","url":"/"}
-    {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/"}
-    {"time":"...","level":"INFO","msg":"httpLog","remoteAddr":"[::1]:59414","method":"GET","url":"/favicon.ico"}
-    ```
+    ![App endpoint requests](./media/app-endpoint-requests.png)
 
-1. If these requests were successful, you've successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
+If these requests were successful, you've successfully migrated the application workload to an Azure virtual machine and Azure Database for PostgreSQL (Flexible Server).
 
 ## Clean up Azure resources
 
 After you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs.
 
-1. You can delete the resource group **240900-linux-postgres** manually via the Azure portal, or run the following Azure CLI command:
+1. You can delete the resource group **240900-linux-postgres** manually via the Azure portal. In your second terminal, run the following Azure CLI command:
 
     ```bash
     az group delete \
