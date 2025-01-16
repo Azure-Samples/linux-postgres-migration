@@ -253,9 +253,9 @@ In this unit, you will:
 
 ## Clean up Azure resources
 
-After you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs.
+After you finish exploring the Linux and PostgreSQL workloads, clean up the resources to save costs. You can delete the resource group **240900-linux-postgres** manually via the Azure portal. 
 
-You can delete the resource group **240900-linux-postgres** manually via the Azure portal. In your second terminal, run the following Azure CLI command:
+More efficiently, in your second terminal, run the following Azure CLI command:
 
 ```bash
 az group delete \
