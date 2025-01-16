@@ -159,6 +159,8 @@ In this unit, you will:
     exit
     ```
 
+    ![Exit remote machine](./media/exit-remote-machine.png)
+
 ## Resources
 
 - [Sign in to a Linux virtual machine in Azure by using Microsoft Entra ID and OpenSSH][docs-url-3]

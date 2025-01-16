@@ -27,6 +27,8 @@ In this unit, you will:
             deployStorage=true
     ```
 
+    >**Alert:** The deployment may take a few minutes to complete.
+
 1. Add the current user to the **Storage Blob Data Owner** role:
 
     ```bash
@@ -74,25 +76,9 @@ In this unit, you will:
 
     The output will be similar to the following:
 
-    ```
-    [
-    {
-        "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/wrench_set.jpg",
-        "Last Modified": "...",
-        "Type": "image/jpeg",
-        "eTag": "\"0x8DCE0CA938AF41B\""
-    },
-    {
-        "Blob": "https://storageji2dbe.blob.core.windows.net/container1/images/planer.jpg",
-        "Last Modified": "...",
-        "Type": "image/jpeg",
-        "eTag": "\"0x8DCE0CA939DF18B\""
-    },
-    ...
-    ]
-    ```
+    ![Migrate images to storage account subfolder](./media/migrate-images-to-storage.png)
 
-1. Upload app/data/postgres/tailwind.sql to the storage account:
+1. Upload **app/data/postgres/tailwind.sql** to the storage account:
 
     ```bash
     az storage blob upload \
@@ -105,7 +91,7 @@ In this unit, you will:
 
 ## Download and import a SQL file using psql
 
-1. Connect to the Azure virtual machine by using the az ssh command:
+1. Connect to the Azure virtual machine by using the **az ssh** command:
 
     ```bash
     az ssh vm \
@@ -171,27 +157,7 @@ In this unit, you will:
 
     The following output appears:
 
-    ```
-    postgres=> \dt
-                            List of relations
-    Schema |         Name         | Type  |             Owner              
-    --------+----------------------+-------+--------------------------------
-    public | cart_items           | table | 240900-linux-postgres-identity
-    public | checkouts            | table | 240900-linux-postgres-identity
-    public | collections          | table | 240900-linux-postgres-identity
-    public | collections_products | table | 240900-linux-postgres-identity
-    public | customers            | table | 240900-linux-postgres-identity
-    public | delivery_methods     | table | 240900-linux-postgres-identity
-    public | product_types        | table | 240900-linux-postgres-identity
-    public | products             | table | 240900-linux-postgres-identity
-    public | shipment_items       | table | 240900-linux-postgres-identity
-    public | shipments            | table | 240900-linux-postgres-identity
-    public | store_inventory      | table | 240900-linux-postgres-identity
-    public | stores               | table | 240900-linux-postgres-identity
-    public | suppliers            | table | 240900-linux-postgres-identity
-    public | supply_orders        | table | 240900-linux-postgres-identity
-    (14 rows)
-    ```
+    ![List tables](./media/list-tables-psql.png)
 
 1. Run a SQL query that lists the tables:
 
@@ -203,28 +169,7 @@ In this unit, you will:
 
     The following output appears:
 
-    ```
-    postgres=> SELECT table_name
-    FROM information_schema.tables
-    WHERE table_schema = 'public';
-        table_name      
-    ----------------------
-    collections
-    stores
-    customers
-    cart_items
-    product_types
-    products
-    suppliers
-    collections_products
-    checkouts
-    shipments
-    delivery_methods
-    shipment_items
-    store_inventory
-    supply_orders
-    (14 rows)
-    ```
+    ![psql list table names](./media/psql-list-table-names.png)
 
 1. Turn on expanded mode at the **postgres=>** prompt:
 
@@ -238,45 +183,13 @@ In this unit, you will:
     select * from products;
     ```
 
-    The following prompt appears:
-
-    ```
-    postgres=> \x
-    Expanded display is on.
-    postgres=> select * from products;
-    ```
-
     A listing of products appears:
 
-    ```
-    id                 | 1
-    product_type_id    | 1
-    supplier_id        | 2
-    sku                | brush_cleaner
-    name               | Meltdown Brush Cleaner
-    price              | 12.99
-    description        | We all leave our brushes sitting around, full of old dry paint. Don't worry! The Meltdown Brush Cleaner can remove just about anything.
-    image              | brush_cleaner.jpg
-    digital            | f
-    unit_description   | 1 - 10oz Jar
-    package_dimensions | 4x8x2
-    weight_in_pounds   | 3.2
-    reorder_amount     | 10
-    status             | in-stock
-    requires_shipping  | t
-    warehouse_location | Zone 1, Shelf 12, Slot 6
-    created_at         | ...
-    updated_at         | ...
-    ...
-    ```
+    ![Expanded product list](./media/expanded-product-list.png)
 
-1. You can use **Spacebar** to page through the results. Enter `q` to exit the pager.
+1. Use **Spacebar** to page through the results. Enter `q` to exit the pager.
 
-1. Exit psql:
-
-    ```
-    \q
-    ```
+1. Enter `\q` to exit psql.
 
 ## Run the application interactively via the command line
 
@@ -294,12 +207,7 @@ In this unit, you will:
 
     The following output appears:
 
-    ```
-    $ go run main.go app:serve
-    Listening on :8080
-    ```
-
-## Browse the public API endpoint
+    ![Run app interactively](./media/run-app-interactively.png)
 
 1. Get the public IP address of the virtual machine:
 
@@ -311,7 +219,7 @@ In this unit, you will:
         --out tsv)
     ```
 
-    Output the URL to the terminal:
+1. Output the URL to the terminal:
 
     ```bash
     echo "Your URL is: http://${IP_ADDRESS}:8080"
@@ -319,7 +227,9 @@ In this unit, you will:
 
     This unit uses port 8080 for interactive dev/test purposes. In production, you would use port 443 and require a TLS certificate to help secure traffic to the endpoint.
 
-1. Open the URL from the previous output in a web browser. The following output appears:
+1. Open the URL from the previous output in a web browser. 
+
+    The following output appears:
 
     ```
     {
