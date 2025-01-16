@@ -57,7 +57,7 @@ In this unit, you will:
     sudo apt-get install -y postgresql-client golang-go
     ```
 
-1. Confirm the version of psql:
+1. Confirm the version of **psql**:
 
     ```bash
     psql --version
@@ -130,7 +130,7 @@ In this unit, you will:
 
 ## PostgreSQL server connection using the Tailwind Traders (Go) app:token target
 
-1. Sign in using Go and psql:
+1. Sign in using Go and **psql**:
 
     ```bash
     MANAGED_IDENTITY_NAME=240900-linux-postgres-identity

@@ -121,7 +121,7 @@ In this unit, you will:
         --name tailwind.sql
     ```
 
-1. Set the environment variables for psql on the remote machine:
+1. Set the environment variables for **psql** on the remote machine:
 
     ```bash
     MANAGED_IDENTITY_NAME=240900-linux-postgres-identity
@@ -135,7 +135,7 @@ In this unit, you will:
     export PGDATABASE=postgres
     ```
 
-1. Import tailwind.sql by using psql:
+1. Import **tailwind.sql** by using **psql**:
 
     ```bash
     psql -f tailwind.sql
@@ -189,7 +189,7 @@ In this unit, you will:
 
 1. Use **Spacebar** to page through the results. Enter `q` to exit the pager.
 
-1. Enter `\q` to exit psql.
+1. Enter `\q` to exit **psql**.
 
 ## Run the application interactively via the command line
 
