@@ -1,6 +1,6 @@
 # Module 3: Configure a Linux application workload​
 
-In this unit, you will:
+In this unit, you'll:
 
 - Configure a Linux application workload to connect to Azure Database for PostgreSQL by using a system-assigned managed identity.
 - Connect to the [Azure virtual machine by using the Azure CLI][docs-url-1].
@@ -147,17 +147,9 @@ In this unit, you will:
     psql
     ```
 
-1. Quit **psql**:
+1. Enter `\q` to quit **psql**.
 
-    ```bash
-    \q
-    ```
-
-1. Disconnect from the remote machine:
-
-    ```bash
-    exit
-    ```
+1. Enter `exit` to disconnect from the remote machine.
 
     ![Exit remote machine](./media/exit-remote-machine.png)
 

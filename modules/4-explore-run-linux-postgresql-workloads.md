@@ -1,6 +1,6 @@
 # Module 4: Explore and run Linux and PostgreSQL workloads​
 
-In this unit, you will:
+In this unit, you'll:
 
 - Deploy an Azure Blob Storage account by using a Bicep template.
 - Create a Blob Storage container.
