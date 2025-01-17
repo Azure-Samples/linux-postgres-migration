@@ -171,11 +171,7 @@ In this unit, you'll:
 
     ![psql list table names](./media/psql-list-table-names.png)
 
-1. Turn on expanded mode at the **postgres=>** prompt:
-
-    ```
-    \x
-    ```
+1. Enter `\x` to turn on expanded mode at the **postgres=>** prompt:
 
 1. In expanded mode, select from the products table:
 
