@@ -60,9 +60,9 @@ az group create \
 
 Bicep is a domain-specific language (DSL) that uses declarative syntax to deploy Azure resources. In a Bicep file, you define the infrastructure that you want to deploy to Azure. You then use that file throughout the development life cycle to repeatedly deploy your infrastructure. Your resources are deployed in a consistent manner.
 
-The Bicep file that you're using to deploy the compute resources for this unit is in the [deploy/vm-postgres.bicep][9] GitHub repo. It contains a virtual machine, a virtual network, a managed identity, and a network security group (NSG) for the VM. 
-
 You can read more about Bicep in [What is Bicep?][docs-url-1].
+
+The Bicep file that you're using to deploy the compute resources for this unit is in the [deploy/vm-postgres.bicep][9] GitHub repo. It contains a virtual machine, a virtual network, a managed identity, and a network security group (NSG) for the VM. 
 
 1. Clone the example repo to your local machine:
 
