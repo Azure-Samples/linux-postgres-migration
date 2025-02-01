@@ -43,3 +43,7 @@ az deployment group create \
 az group delete \
     --name 240900-linux-postgres
 ```
+
+## Deploy via Azure Portal
+
+[Deploy to Azure](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Flinux-postgres-migration%2Fmain%2Fdeploy%2Fvm-postgres.json)
