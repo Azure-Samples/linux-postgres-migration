@@ -1,5 +1,7 @@
 # Linux and Postgres Migration
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Azure-Samples/linux-postgres-migration)
+
 ## Introduction 
 
 This module guides you through the migration of an existing workload from an on-premises or cloud environment to Azure. It covers the migration of the compute to an Azure virtual machine (VM) and the data to Azure Database for PostgreSQL. The application is a cloud-agnostic sample that's a stand-in for any real-world application that's prepared for migration to the cloud.
